@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "957671795678",
+    "project_id": "tactile-pulsar-451123-q6",
+    "storage_bucket": "tactile-pulsar-451123-q6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957671795678:android:bc3403183ed3d1e7570b4f",
+        "android_client_info": {
+          "package_name": "com.example.ourcommunity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUIpR5KqQ7Q7IdjrXfqtUcdEzBeuZwOwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
