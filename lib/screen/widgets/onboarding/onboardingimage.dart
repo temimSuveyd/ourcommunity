@@ -12,7 +12,6 @@ class OnboardingImage extends StatelessWidget {
       child: Image.asset(
         imagePath,
         fit: BoxFit.contain,
-        // gaplessPlayback: true, 
       ),
     );
   }

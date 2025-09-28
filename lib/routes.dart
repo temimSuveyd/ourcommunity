@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:ourcommunity/screen/view/homepage.dart';
 import 'package:ourcommunity/screen/view/onboarding_page.dart';
 import 'package:ourcommunity/screen/view/openscreen.dart';
 import 'package:ourcommunity/screen/view/auth/OTPVerificationPage.dart';
@@ -71,10 +70,10 @@ List<GetPage> routes = [
     transitionDuration: const Duration(milliseconds: 300),
   ),
 
-  GetPage(
-    name: Approutes.homePage,
-    page: () => HomePage(),
-    transition: Transition.leftToRightWithFade,
-    transitionDuration: const Duration(milliseconds: 300),
-  ),
+  // GetPage(
+  //   name: Approutes.homePage,
+  //   page: () => HomePage(),
+  //   transition: Transition.leftToRightWithFade,
+  //   transitionDuration: const Duration(milliseconds: 300),
+  // ),
 ];

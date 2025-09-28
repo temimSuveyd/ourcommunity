@@ -121,7 +121,7 @@ class _LoginForm extends StatelessWidget {
               const SizedBox(height: 20),
 
               /// Social Buttons
-              SocialButtons(onPressed: () => controller.signInWithGoogle()),
+              // SocialButtons(onPressed: () => controller.signInWithGoogle()),
               const SizedBox(height: 25),
 
               /// Register Text

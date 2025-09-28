@@ -71,14 +71,14 @@ class Onboarding extends StatelessWidget {
                               CustomBottomOnboarding(
                                 textcolor: item.textbuttonColor ?? Colors.white,
                                 color: item.buttonColor ?? Colors.black,
-                                onPressed: () {
-                                  if (controller.currentpage ==
-                                      onboardinglist.length - 1) {
-                                    Get.offAllNamed(Approutes.welcomeBackUI);
-                                  } else {
-                                    controller.next();
-                                  }
-                                },
+                                // onPressed: () {
+                                //   if (controller.currentpage ==
+                                //       onboardinglist.length - 1) {
+                                //     Get.offAllNamed(Approutes.welcomeBackUI);
+                                //   } else {
+                                //     controller.next();
+                                //   }
+                                // },
                               ),
                             ],
                           ),

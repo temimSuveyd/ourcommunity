@@ -1,3 +1,5 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,35 +9,27 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   final bool obscure;
   final IconData? suffix;
-  final TextEditingController ? controller;
-  final Key? textFieldKey;
-final void Function()? onPressed ;
+  final TextEditingController? controller ;
+  final Function()? onPressed;
+
   const CustomTextField({
-    super.key,
     required this.hint,
     required this.icon,
     this.obscure = false,
-    this.suffix,
-    this.controller,
-    this.textFieldKey, 
-    this.onPressed,
+    this.suffix, 
+     this.controller,
+     this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      key: textFieldKey,
+    return TextField(
       controller: controller,
       obscureText: obscure,
       decoration: InputDecoration(
         hintText: hint,
         prefixIcon: Icon(icon, color: Colors.grey.shade700),
-        suffixIcon: IconButton(
-            onPressed: () => onPressed!() ,
-            icon: Icon(
-              suffix ?? null,
-              color: Colors.grey.shade700,
-            )),
+        suffixIcon: suffix != null ? IconButton(onPressed: onPressed, icon: Icon(Icons.password)) : null,
         filled: true,
         fillColor: Colors.grey[300],
         hintStyle: TextStyle(

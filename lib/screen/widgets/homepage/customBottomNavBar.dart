@@ -1,44 +1,56 @@
-import 'package:flutter/cupertino.dart';
+// ✅ شريط التنقل السفلي
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
-class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar();
+import '../../../controller/homepagecontroller.dart';
+import '../../../core/constant/color.dart';
+
+class BottomNavBar extends StatelessWidget {
+  final HomeController controller;
+  const BottomNavBar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 8,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _BottomNavItem(icon: Iconsax.user, label: "حسابي"),
-          _BottomNavItem(icon: Iconsax.heart, label: "المحفوظة"),
-          const SizedBox(width: 40), // مكان زر +
-          _BottomNavItem(icon: Iconsax.star, label: "توصيات"),
-          _BottomNavItem(icon: Iconsax.home, label: "الرئيسية", isActive: true),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 6,
+            offset: const Offset(0, -2),
+          )
         ],
       ),
-    );
-  }
-}
-
-class _BottomNavItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isActive;
-
-  const _BottomNavItem({required this.icon, required this.label, this.isActive = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: isActive ? Colors.blue : Colors.grey),
-        Text(label, style: TextStyle(color: isActive ? Colors.blue : Colors.grey)),
-      ],
+      child: BottomNavigationBar(
+        currentIndex: controller.currentIndex.value,
+        onTap: controller.changePage,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Appcolor.primarycolor,
+        unselectedItemColor: Colors.grey.shade600,
+        selectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: "cairo",
+          fontSize: 15.sp,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: "cairo",
+          fontSize: 15.sp,
+        ),
+        items: [
+          BottomNavigationBarItem(
+              icon: const Icon(Iconsax.home5), label: "home".tr),
+          BottomNavigationBarItem(
+              icon: const Icon(Iconsax.heart5), label: "favorites".tr),
+          BottomNavigationBarItem(
+              icon: const Icon(Iconsax.star5), label: "recommendations".tr),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.person), label: "profile".tr),
+        ],
+      ),
     );
   }
 }

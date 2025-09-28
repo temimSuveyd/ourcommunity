@@ -79,9 +79,10 @@ class OnboardingCustomSlider extends GetView<OnboardingcontrollerImp> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Customcontrolleronboarding(),
+
+              Customcontrolleronboarding(color: Colors.black,),
               SizedBox(width: 100.w),
-              // CustomBottomOnboarding(),
+              CustomBottomOnboarding(color: Colors.black, textcolor: Colors.white,),
             ],
           ),
        ] ));

@@ -10,16 +10,14 @@ class CustomBottomOnboarding extends GetView<OnboardingcontrollerImp> {
 
   final  Color color;
   final Color textcolor;
-  final Function() onPressed;
-
- const CustomBottomOnboarding( {super.key, required this.color,required this.textcolor , required this.onPressed});
+ CustomBottomOnboarding( {super.key, required this.color,required this.textcolor});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingcontrollerImp>(
       builder: (controller) {
-        return SizedBox(
-          // margin: EdgeInsets.only(bottom: 5.h, left: 20.w, right: 20.w),
+        return Container(
+          margin: EdgeInsets.only(bottom: 5.h, left: 20.w, right: 20.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -33,8 +31,11 @@ class CustomBottomOnboarding extends GetView<OnboardingcontrollerImp> {
                   padding: EdgeInsets.all(24), // علشان تبقى الدائرة كبيرة
                 ),
                 onPressed: () {
-                  onPressed();
-           
+                  if (controller.currentpage == onboardinglist.length - 1) {
+                    Get.offAllNamed(Approutes.welcomeBackUI);
+                  } else {
+                    controller.next();
+                  }
                 },
                 child: Text(
                   "Next".tr,
