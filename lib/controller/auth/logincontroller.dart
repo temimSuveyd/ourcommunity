@@ -1,28 +1,31 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 import 'package:ourcommunity/core/class/custom_snacBar.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
-
+import 'package:ourcommunity/core/constant/sharedPreferences_constans.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class SignInController extends GetxController {
   void togglePasswordVisibility();
   void signIn();
   void signInWithGoogle();
   void signInWithEmail();
-  void statusreqest(Statusreqest _status);
+  void statusreqest(Statusreqest status);
+  Future saveDataLocal(String userUid);
 }
 
 class SignInControllerImp extends SignInController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
-  Statusreqest status = Statusreqest.success;
+  Statusreqest statusR = Statusreqest.success;
   var obscurePassword = true.obs;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  final SupabaseClient supabase = Supabase.instance.client;
 
   @override
   void togglePasswordVisibility() {
@@ -32,45 +35,56 @@ class SignInControllerImp extends SignInController {
 
   @override
   Future<void> signInWithEmail() async {
-    try {
-      statusreqest(Statusreqest.loading);
-      await auth.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text,
-      );
-      Get.offAllNamed(Approutes.homePage);
-            showCustomSnackBar("Welcome");
-    } on FirebaseAuthException catch (e) {
-      showCustomSnackBar(e.message ?? 'An error occurred');
-      statusreqest(Statusreqest.success);
-    } catch (e) {
-      showCustomSnackBar('An error occurred');
-      statusreqest(Statusreqest.success);
-    } finally {
-      statusreqest(Statusreqest.success);
+    if (key.currentState!.validate()) {
+      try {
+        statusreqest(Statusreqest.loading);
+        final AuthResponse res = await supabase.auth.signInWithPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        final userId = res.user!.id;
+        if (res.session != null) {
+          saveDataLocal(userId);
+          Get.offAllNamed(AppRoutes.homePage);
+          showCustomSnackBar("Welcome");
+        }
+      } on AuthApiException catch (e) {
+        showCustomSnackBar(e.message);
+
+        statusreqest(Statusreqest.success);
+      } finally {
+        statusreqest(Statusreqest.success);
+      }
     }
   }
 
   @override
+  Future saveDataLocal(String userUid) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString(SharedKeys.userUid, userUid);
+    pref.setBool(SharedKeys.isLogin, true);
+  }
+
+  @override
   Future<void> signInWithGoogle() async {
-    try {
-      statusreqest(Statusreqest.loading);
+    // try {
+    //   statusreqest(Statusreqest.loading);
 
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      if (googleUser == null) return;
+    //   final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    //   if (googleUser == null) return;
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      await auth.signInWithCredential(credential);
-    } catch (e) {
-     showCustomSnackBar(e.toString());
-    } finally {
-      statusreqest(Statusreqest.success);
-    }
+    //   final GoogleSignInAuthentication googleAuth =
+    //       await googleUser.authentication;
+    //   final credential = GoogleAuthProvider.credential(
+    //     accessToken: googleAuth.accessToken,
+    //     idToken: googleAuth.idToken,
+    //   );
+    //   await auth.signInWithCredential(credential);
+    // } catch (e) {
+    //  showCustomSnackBar(e.toString());
+    // } finally {
+    //   statusreqest(Statusreqest.success);
+    // }
   }
 
   @override
@@ -79,8 +93,8 @@ class SignInControllerImp extends SignInController {
   }
 
   @override
-  void statusreqest(Statusreqest _status) {
-    status = _status;
+  void statusreqest(Statusreqest status) {
+    statusR = status;
     update();
   }
 

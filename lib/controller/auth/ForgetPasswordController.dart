@@ -1,46 +1,45 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ourcommunity/core/class/custom_snacBar.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class Forgetpasswordcontroller extends GetxController {
   void sendMessage();
-  void statusreqest(Statusreqest _status);
+  void statusreqest(Statusreqest status);
 }
 
 class ForgetPasswordControllerImpl extends Forgetpasswordcontroller {
   final emailController = TextEditingController();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
-  Statusreqest status = Statusreqest.success;
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  Statusreqest statusR = Statusreqest.success;
+  final SupabaseClient supabase = Supabase.instance.client;
 
   @override
   void sendMessage() async {
     statusreqest(Statusreqest.loading);
     try {
-      await auth.sendPasswordResetEmail(
-        email: emailController.text.trim(),
+      final email = emailController.text.trim();
+      final res = await supabase.auth.resetPasswordForEmail(
+        email,
       );
       showCustomSnackBar(
-          "The password reset link was sent to your e-mail address.");
-      Get.toNamed(Approutes.loginPage);
+          "The password reset link was sent to your e-mail ($email) address.");
+      Get.toNamed(AppRoutes.loginPage);
       statusreqest(Statusreqest.success);
-    } on FirebaseAuthException catch (e) {
-      showCustomSnackBar(e.message ?? 'An error occurred');
+    } on AuthApiException catch (e) {
+      showCustomSnackBar(e.message);
       statusreqest(Statusreqest.success);
     } catch (e) {
       showCustomSnackBar('An error occurred');
-      statusreqest(Statusreqest.faliure);
+      statusreqest(Statusreqest.success);
     }
   }
 
   @override
-  void statusreqest(Statusreqest _status) {
-    status = _status;
+  void statusreqest(Statusreqest status) {
+    statusR = status;
     update();
   }
 

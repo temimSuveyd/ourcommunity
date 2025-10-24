@@ -25,7 +25,7 @@ class MembersSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                 ),
               ),
-              onPressed: () => Get.toNamed(Approutes.inviteMemberPage),
+              onPressed: () => Get.toNamed(AppRoutes.inviteMemberPage),
               icon: const Icon(Icons.person_add, color: Colors.white),
               label: Text(
                 "دعوة عضو",

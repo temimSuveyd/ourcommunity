@@ -1,143 +1,94 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:ourcommunity/core/constant/color.dart';
-
-
-import '../../../controller/favouritecontroller.dart';
+import 'package:ourcommunity/data/model/event/event_model.dart';
+import 'event_card_widgets/event_card_container.dart';
+import 'event_card_widgets/event_image_widget.dart';
+import 'event_card_widgets/favorite_button_widget.dart';
+import 'event_card_widgets/image_overlay_widget.dart';
+import 'event_card_widgets/event_title_widget.dart';
+import 'event_card_widgets/event_info_chip.dart';
+import 'event_card_widgets/divider_widget.dart';
+import 'event_card_widgets/event_details_button.dart';
 
 class EventCard extends StatelessWidget {
-  final String title;
-  final String date;
-  final String location;
-  final String? image; // ✅ ممكن تكون null
+  final EventModel eventModel;
+  final Function() toggleFavorite;
+  final bool isFavorite;
 
   const EventCard({
     super.key,
-    required this.title,
-    required this.date,
-    required this.location,
-    this.image,
+    required this.eventModel,
+    required this.toggleFavorite, 
+    required this.isFavorite,
   });
 
   @override
   Widget build(BuildContext context) {
-    final FavoriteController favController = Get.find();
-
-    final Map<String, dynamic> event = {
-      "title": title,
-      "date": date,
-      "location": location,
-      "image": image,
-    };
-
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+    return EventCardContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// صورة الفعالية + أيقونة المفضلة
+          // Görsel + Favori butonu + overlay
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-                child: image != null && image!.isNotEmpty
-                    ? Image.network(
-                  image!,
-                  height: 150.h,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      "assets/images/placeholder.png",
-                      height: 150.h,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    );
-                  },
-                )
-                    : Image.asset(
-                  "assets/images/placeholder.png",
-                  height: 150.h,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+              EventImageWidget(
+                imageUrl: eventModel.photo,
+                height: 155,
+                borderRadius: 20,
               ),
-
-              /// زر المفضلة أعلى اليمين
+              ImageOverlayWidget(
+                borderRadius: 20,
+              ),
+              // Favori butonu sağ üstte
               Positioned(
-                top: 10,
-               left: 10,
-                child: Obx(() {
-                  final isFav = favController.isFavorite(event);
-                  return InkWell(
-                    onTap: () => favController.toggleFavorite(event),
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        isFav ? Icons.favorite_border_outlined :Icons.favorite_border_outlined ,
-                        color: isFav ? Colors.red : Colors.grey,
-                      ),
-                    ),
-                  );
-                }),
+                top: 13,
+                right: 13,
+                child: FavoriteButtonWidget(
+                  onTap: toggleFavorite,
+                  isFavorite: isFavorite,
+                ),
               ),
             ],
           ),
-
-          /// تفاصيل الفعالية
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 13.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Appcolor.black,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "cairo",
-                  ),
+                // Event title
+                EventTitleWidget(
+                  title: eventModel.title ?? "Title",
                 ),
-                const SizedBox(height: 5),
-                Row(
+                SizedBox(height: 8.h),
+                // Event info chips
+                Wrap(
+                  spacing: 8.w,
+                  runSpacing: 6.h,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Icon(Iconsax.calendar_15,
-                        size: 16.sp, color: Appcolor.primarycolor),
-                    const SizedBox(width: 5),
-                    Text(
-                      date,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14.sp,
-                        fontFamily: "cairo",
-                        fontWeight: FontWeight.bold,
-                      ),
+                    EventInfoChip(
+                      icon: Iconsax.location5,
+                      text:
+                          "${eventModel.city ?? '-'} / ${eventModel.governorate}",
+                    ),
+                    EventInfoChip(
+                      icon: Iconsax.calendar_15,
+                      text: "${eventModel.startDate} - ${eventModel.endDate}",
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(Iconsax.location5, size: 16.sp, color: Colors.red),
-                    const SizedBox(width: 5),
-                    Text(
-                      location,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 14.sp,
-                        fontFamily: "cairo",
-                      ),
-                    ),
-                  ],
+                SizedBox(height: 8.h),
+
+                // Divider
+                CustomDividerWidget(),
+
+                // Details button
+                EventDetailsButton(
+                  onTap: () {
+                    // detaylara gitmek için
+                    // debugPrint("Etkinlik detayına git: ${eventModel.title}");
+                  },
                 ),
               ],
             ),

@@ -10,13 +10,13 @@ import '../../../core/constant/color.dart';
 /// DateField مع أيقونة + نص افتراضي "اختر التاريخ"
 Widget buildDateField(
     String label,
-    CreateEventController controller,
+    CreateEventControllerImp controller,
     bool isStart,
     BuildContext context,
     ) {
   return Obx(() {
     final selectedDate =
-    isStart ? controller.selectedStartDate.value : controller.selectedEndDate.value;
+    isStart ? controller.selectedStartDate : controller.selectedEndDate;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -31,15 +31,12 @@ Widget buildDateField(
           SizedBox(height: 6.h),
           TextField(
             readOnly: true,
-            onTap: () => controller.pickDate(context, isStart),
             decoration: InputDecoration(
-              hintText: selectedDate == null
-                  ? "اختر التاريخ"
-                  : "${selectedDate.toLocal()}".split(' ')[0],
+              hintText: "${selectedDate.toLocal()}".split(' ')[0],
               hintStyle: TextStyle(
                 fontSize: 14.sp,
                 fontFamily: "cairo",
-                color: selectedDate == null ? Appcolor.grey : Colors.black,
+                color: Colors.black,
               ),
               suffixIcon: Icon(
                 Icons.calendar_today,

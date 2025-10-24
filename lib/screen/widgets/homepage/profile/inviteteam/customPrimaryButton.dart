@@ -6,7 +6,8 @@ class CustomPrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const CustomPrimaryButton({super.key, required this.text, required this.onPressed});
+  const CustomPrimaryButton(
+      {super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,8 @@ class CustomPrimaryButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w800,
-            fontFamily: "cairo",
             color: Appcolor.white,
           ),
         ),

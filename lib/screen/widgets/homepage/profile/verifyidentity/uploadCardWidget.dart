@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constant/color.dart';
-import '../../../../view/profile/verifyIdentityPage.dart';
 import 'dashedBorderPainter.dart';
 
 class UploadCardWidget extends StatelessWidget {

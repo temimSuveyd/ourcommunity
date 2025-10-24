@@ -1,16 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:ourcommunity/core/constant/color.dart';
 
 class ImageUploadCard extends StatelessWidget {
-  final Rx<File?> imageFile;
+  final String? imageUrl;
   final VoidCallback onPickImage;
 
   const ImageUploadCard({
     super.key,
-    required this.imageFile,
+    required this.imageUrl,
     required this.onPickImage,
   });
 
@@ -26,18 +24,18 @@ class ImageUploadCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Appcolor.grey, width: 1.5),
         ),
-        child: Obx(() {
-          if (imageFile.value != null) {
-            return ClipRRect(
+        child:  
+          imageUrl != null?
+             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.file(
-                imageFile.value!,
+              child: Image.network(
+                imageUrl!,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
-            );
-          } else {
-            return Column(
+            ):
+         
+             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.image, size: 40.sp, color: Appcolor.grey),
@@ -65,9 +63,8 @@ class ImageUploadCard extends StatelessWidget {
                   ),
                 ),
               ],
-            );
-          }
-        }),
+            ),
+        
       ),
     );
   }

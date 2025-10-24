@@ -1,30 +1,21 @@
-
-
-
 import 'package:get/get.dart';
+import 'package:ourcommunity/core/constant/dataBase_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-
-
-class Services extends GetxService{
-
+class Services extends GetxService {
   late SharedPreferences sharedPreferences;
 
-
-
-  Future<Services> init()  async{
-    /*await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );*/
-    sharedPreferences= await   SharedPreferences.getInstance();
+  Future<Services> init() async {
+    await Supabase.initialize(
+      url: DatabaseKeys.supabaseUrl,
+      anonKey: DatabaseKeys.supabaseKey,
+    );
+    sharedPreferences = await SharedPreferences.getInstance();
     return this;
   }
-
-
 }
 
-
-initailservieses()async{
-
- await Get.putAsync(() => Services().init());
+initailservieses() async {
+  await Get.putAsync(() => Services().init());
 }

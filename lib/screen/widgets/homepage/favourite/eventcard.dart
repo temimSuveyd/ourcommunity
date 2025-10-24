@@ -16,7 +16,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FavoriteController controller = Get.find();
+    final FavoriteEventsController controller = Get.find();
 
     final imageUrl = event["image"] ?? "";
 
@@ -65,7 +65,7 @@ class EventCard extends StatelessWidget {
                 left: 8.w,
                 child: GestureDetector(
                   onTap: () {
-                    controller.removeFromFavorite(index);
+                    // controller.removeFromFavorite(index);
                   },
                   child: CircleAvatar(
                     radius: 18,

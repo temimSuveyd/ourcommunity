@@ -10,7 +10,7 @@ import '../../../../../core/constant/color.dart';
 
 /// ✅ ملخص الطلب
 class OrderSummary extends StatelessWidget {
-  const OrderSummary();
+  const OrderSummary({super.key});
 
   @override
   Widget build(BuildContext context) {

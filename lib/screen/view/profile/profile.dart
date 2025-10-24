@@ -59,19 +59,19 @@ class ProfilePage extends StatelessWidget {
                       ProfileOptionTile(
                         icon: Icons.edit,
                         title: "تعديل الملف الشخصي",
-                        onTap: () => Get.toNamed(Approutes.editProfilePage),
+                        onTap: () => Get.toNamed(AppRoutes.editProfilePage),
                       ),
                       Divider(height: 1, color: Appcolor.grey.withOpacity(0.3)),
                       ProfileOptionTile(
                         icon: Icons.verified_user,
                         title: "توثيق الهوية",
-                        onTap: () => Get.toNamed(Approutes.verifyIdentityPage),
+                        onTap: () => Get.toNamed(AppRoutes.verifyIdentityPage),
                       ),
                       Divider(height: 1, color: Appcolor.grey.withOpacity(0.3)),
                       ProfileOptionTile(
                         icon: Icons.settings,
                         title: "الإعدادات",
-                        onTap: () => Get.toNamed(Approutes.settingsPage),
+                        onTap: () => Get.toNamed(AppRoutes.settingsPage),
                       ),
                     ],
                   ),
@@ -79,13 +79,13 @@ class ProfilePage extends StatelessWidget {
 
                 // 🔹 قسم الفرق
                 TeamSection(
-                  onCreateTeam: () => Get.toNamed(Approutes.createTeamPage),
+                  onCreateTeam: () => Get.toNamed(AppRoutes.createTeamPage),
                   teams: [
                     {
                       "image": "assets/images/team1.png",
                       "title": "فريق الدمسه",
                       "subtitle": "واجهة المستخدم",
-                      "onTap": () => Get.toNamed(Approutes.quraaAldasmaPage),
+                      "onTap": () => Get.toNamed(AppRoutes.quraaAldasmaPage),
                     },
                     {
                       "image": "assets/images/team2.png",

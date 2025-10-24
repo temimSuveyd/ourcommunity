@@ -6,8 +6,8 @@ import 'package:ourcommunity/core/constant/color.dart';
 
 class HandlingDataView extends StatelessWidget {
   const HandlingDataView(
-      {super.key, required this.widget, this.message, required this.status});
-  final Widget widget;
+      {super.key, required this.child, this.message, required this.status});
+  final Widget child;
   final String? message;
   final Statusreqest status;
   @override
@@ -21,8 +21,31 @@ class HandlingDataView extends StatelessWidget {
         image: AppImagesasset.worgingAnimation,
         message: message,
       );
+    } else if (status == Statusreqest.noData) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.inbox,
+              size: 100,
+              color: Appcolor.primarycolor.withOpacity(0.25),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              message ?? "No data",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black54,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      );
     } else {
-      return widget;
+      return child;
     }
   }
 }
@@ -41,11 +64,12 @@ class CustomAnimationImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         spacing: message != null ? 20 : 0,
         children: [
-
-          SizedBox(height: 200,),
+          SizedBox(
+            height: 200,
+          ),
           Center(
             child: LottieBuilder.asset(
               image,

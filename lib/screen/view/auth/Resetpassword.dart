@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../../../core/constant/Approutes.dart';
 import '../../widgets/auth/authbuttom.dart';
@@ -61,25 +62,27 @@ class ResetPasswordPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     // New Password
                     /// Password
-                    const CustomTextField(
+                     CustomTextField(
                       
                       hint: "Password",
                       icon: Icons.lock,
                       obscure: true,
                       suffix: Icons.visibility,
+                            validator: (value) => validateField(value!),
                     ),
                     const SizedBox(height: 16),
                     /// Password
-                    const CustomTextField(
+                     CustomTextField(
                       hint:"Confirm Password",
                       icon: Icons.lock,
                       obscure: true,
                       suffix: Icons.visibility,
+                              validator: (value) => validateField(value!),
                     ),
 
                     const SizedBox(height: 24),
                     // Confirm Button
-                    CustomAuthButton(label:  "Confirm", onPressed: () { Get.toNamed(Approutes.loginPage); },),
+                    CustomAuthButton(label:  "Confirm", onPressed: () { Get.toNamed(AppRoutes.loginPage); },),
                   ],
                 ),
               ),

@@ -132,6 +132,7 @@ class FileUploadCard extends StatelessWidget {
         // dashPattern: [6, 4],
         // borderType: BorderTween,
         // radius: Radius.circular(12.r),
+        
         child: InkWell(
           onTap: controller.pickFile,
           child: Container(

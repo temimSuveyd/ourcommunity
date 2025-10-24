@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../core/constant/Approutes.dart';
-import '../data/static/static.dart';
+import '../data/dataScore/static/static.dart';
 import '../services/servieses.dart';
 
 abstract class Onboardingcontroller extends GetxController {
@@ -27,7 +27,7 @@ class OnboardingcontrollerImp extends Onboardingcontroller {
     if (currentpage == onboardinglist.length - 1) {
       // آخر صفحة ⇒ دخول للتطبيق
       services.sharedPreferences.setString("step", "1");
-      Get.offAllNamed(Approutes.welcomeBackUI);
+      Get.offAllNamed(AppRoutes.welcomeBackUI);
     } else {
       currentpage++;
       pagecontroller.animateToPage(

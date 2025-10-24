@@ -4,50 +4,38 @@ import 'package:get/get.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
 
 import '../../../controller/onboarding_page.dart';
-import '../../../../data/static/static.dart'; // علشان onboardinglist
+import '../../../data/dataScore/static/static.dart'; // علشان onboardinglist
 
 class CustomBottomOnboarding extends GetView<OnboardingcontrollerImp> {
-
-  final  Color color;
+  final Color color;
   final Color textcolor;
- CustomBottomOnboarding( {super.key, required this.color,required this.textcolor});
+  const CustomBottomOnboarding(
+      {super.key, required this.color, required this.textcolor});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingcontrollerImp>(
       builder: (controller) {
-        return Container(
-          margin: EdgeInsets.only(bottom: 5.h, left: 20.w, right: 20.w),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-          // فراغ بدل الزر
-
-              // زر Next أو Get Started
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: color,
-                  shape: const CircleBorder(), // شكل دايرة
-                  padding: EdgeInsets.all(24), // علشان تبقى الدائرة كبيرة
-                ),
-                onPressed: () {
-                  if (controller.currentpage == onboardinglist.length - 1) {
-                    Get.offAllNamed(Approutes.welcomeBackUI);
-                  } else {
-                    controller.next();
-                  }
-                },
-                child: Text(
-                  "Next".tr,
-                  style: TextStyle(
-                    color: textcolor,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-
-            ],
+        return TextButton(
+          style: TextButton.styleFrom(
+              backgroundColor: color,
+              shape: const CircleBorder(), // شكل دايرة
+              padding: EdgeInsets.all(0), // علشان تبقى الدائرة كبيرة
+              fixedSize: Size(55, 55)),
+          onPressed: () {
+            if (controller.currentpage == onboardinglist.length - 1) {
+              Get.offAllNamed(AppRoutes.welcomeBackUI);
+            } else {
+              controller.next();
+            }
+          },
+          child: Text(
+            "Next".tr,
+            style: TextStyle(
+              color: textcolor,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         );
       },

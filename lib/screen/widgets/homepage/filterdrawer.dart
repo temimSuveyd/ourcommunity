@@ -1,123 +1,247 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:ourcommunity/data/dataScore/static/auth/citys_data.dart';
+import 'package:ourcommunity/data/dataScore/static/auth/neighborhoodData.dart';
+import 'package:ourcommunity/data/dataScore/static/home/filter_data.dart';
+import 'package:ourcommunity/screen/widgets/auth/dropdownButton.dart';
 import '../../../controller/homepagecontroller.dart';
 import '../../../core/constant/color.dart';
 
 class FilterDrawer extends StatelessWidget {
-  final HomeController controller;
-  const FilterDrawer({super.key, required this.controller});
+  const FilterDrawer({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black26.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(-4, 0),
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 16,
+              offset: const Offset(-8, 0),
             ),
           ],
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
+            topLeft: Radius.circular(32),
+            bottomLeft: Radius.circular(0),
           ),
         ),
-        child: ListView(
-          padding: const EdgeInsets.all(16),
+        child: GetBuilder<HomeControllerImp>(
+          builder: (controller) => Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 36.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(32),
+                  ),
+                  color: Appcolor.primarycolor.withOpacity(0.05),
+                ),
+                child: Center(
+                  child: Text(
+                    "Additional Filter",
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w800,
+                      color: Appcolor.primarycolor,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(22),
+                  children: [
+                    // ✅ Price
+                    CustomChoiceChipFilter(
+                      title: "Price",
+                      options: priceOptions,
+                      selectedValue: controller.price,
+                      onChanged: (value) => controller.selectPrice(value),
+                    ),
+                    CustomChoiceChipFilter(
+                      title: "Event State",
+                      options: eventState,
+                      selectedValue: controller.eventState,
+                      onChanged: (value) => controller.selecetEventState(value),
+                    ),
+
+                    // ✅ Age Group
+                    _FilterSectionTitle(title: "Age Group"),
+                    const SizedBox(height: 10),
+
+                    CustomDropdownButton(
+                      height: 46,
+                      dataList: ageOptions,
+                      onChanged: (value) => controller.selectAgeGroup(value),
+                      hintText: controller.ageGroup == 'All'
+                          ? "Select Age Group"
+                          : controller.ageGroup,
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    //  Gender
+                    _FilterSectionTitle(title: "Gender"),
+                    const SizedBox(height: 10),
+
+                    CustomDropdownButton(
+                      height: 46,
+                      dataList: genderOptions,
+                      onChanged: (value) => controller.selectGender(value),
+                      hintText: controller.gender == 'All'
+                          ? "Select Gender"
+                          : controller.ageGroup,
+                    ),
+                    const SizedBox(height: 15),
+
+                    // category
+                    _FilterSectionTitle(title: "Category"),
+                    const SizedBox(height: 10),
+                    CustomDropdownButton(
+                      height: 46,
+                      dataList: controller.categoryList
+                          .map((e) => e['category_name'].toString())
+                          .toList(),
+                      hintText: controller.categoryName == "All"
+                          ? "Select Category"
+                          : controller.categoryName,
+                      onChanged: (selectedName) {
+                        final selected = controller.categoryList.firstWhere(
+                          (e) => e['category_name'] == selectedName,
+                        );
+                        if (selected != null) {
+                          controller.selectCategory(
+                              selected['id'], selectedName);
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 15),
+
+                    // team
+                    _FilterSectionTitle(title: "Team"),
+                    const SizedBox(height: 10),
+                    CustomDropdownButton(
+                      height: 46,
+                      dataList: controller.teamDataList
+                          .map((e) => e['team_name'].toString())
+                          .toList(),
+                      hintText: "Select Team",
+                      onChanged: (selectedName) {
+                        final selected = controller.teamDataList.firstWhere(
+                          (e) => e['team_name'] == selectedName,
+                        );
+                        if (selected != null) {
+                          controller.selectTeam(selected['id']);
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 15),
+                    _FilterSectionTitle(title: "City"),
+                    CustomDropdownButton(
+                      height: 46,
+                      dataList: cities,
+                      hintText: controller.city!,
+                      onChanged: (value) {
+                        controller.selectCity(value);
+                      },
+                      onTap: () => controller.showGovernorate(),
+                    ),
+                    if (controller.shwoGovernorate == true)
+                      Column(
+                        children: [
+                          _FilterSectionTitle(title: "Governorate"),
+                          const SizedBox(height: 10),
+                          CustomDropdownButton(
+                            height: 46,
+                            dataList: neighborhoods[controller.city] ?? [],
+                            hintText: controller.governorate,
+                            onChanged: (value) {
+                              controller.selectGovernorate(value);
+                            },
+                          ),
+                        ],
+                      ),
+
+                    const SizedBox(height: 30),
+
+                    // ✅ Reset Button
+                    CustomButton(
+                      onTap: () {
+                        controller.setEventsType();
+                        Get.back();
+                      },
+                      title: "Apply",
+                      icon: Iconsax.tick_square,
+                    ),
+                    const SizedBox(height: 10),
+
+                    CustomButton(
+                      onTap: () => controller.resetFilters(),
+                      title: "Rest",
+                      icon: Iconsax.refresh,
+                    ),
+
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({
+    super.key,
+    required this.title,
+    required this.onTap,
+    required this.icon,
+  });
+  final String title;
+  final Function() onTap;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 46,
+      child: MaterialButton(
+        color: Appcolor.primarycolor,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        onPressed: () => onTap(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(height: 40.h),
-            Center(
-              child: Text(
-                "فلتر إضافية",
-                style: TextStyle(
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue.shade800,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // ✅ السعر
-            _FilterSectionTitle(title: "السعر"),
-            Obx(() => SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: controller.priceOptions.map((option) {
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Radio<String>(
-                        value: option,
-                        groupValue: controller.price.value,
-                        activeColor: Appcolor.primarycolor,
-                        onChanged: (value) {
-                          controller.price.value = value!;
-                        },
-                      ),
-                      Text(
-                        option,
-                        style: TextStyle(
-                          fontSize: 13.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                    ],
-                  );
-                }).toList(),
-              ),
-            )),
-
-            const SizedBox(height: 30),
-
-            // ✅ الفئة العمرية
-            _FilterSectionTitle(title: "الفئة العمرية"),
-            Obx(() => _CustomDropdown(
-              value: controller.ageGroup.value,
-              items: controller.ageOptions,
-              onChanged: (value) => controller.ageGroup.value = value!,
-            )),
-
-            const SizedBox(height: 30),
-
-            // ✅ الجنس
-            _FilterSectionTitle(title: "الجنس"),
-            Obx(() => _CustomDropdown(
-              value: controller.gender.value,
-              items: controller.genderOptions,
-              onChanged: (value) => controller.gender.value = value!,
-            )),
-
-            SizedBox(height: 250.h),
-
-            // ✅ زر إعادة تعيين
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Appcolor.primarycolor,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-              ),
-              onPressed: () {
-                controller.resetFilters();
-              },
-              icon: Icon(Iconsax.refresh, color: Appcolor.white, size: 18.sp),
-              label: Text(
-                "إعادة تعيين",
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "cairo",
-                ),
+            Icon(icon, color: Appcolor.white, size: 20.sp),
+            SizedBox(width: 10),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                fontFamily: "cairo",
+                letterSpacing: 1,
+                color: Colors.white,
               ),
             ),
           ],
@@ -127,65 +251,109 @@ class FilterDrawer extends StatelessWidget {
   }
 }
 
-// ✅ عنصر عنوان قسم الفلتر
+// ✅ Custom Price Filter Widget
+class CustomChoiceChipFilter extends StatelessWidget {
+  final String title;
+  final List<String> options;
+  final String? selectedValue;
+  final Function(String) onChanged;
+
+  const CustomChoiceChipFilter({
+    super.key,
+    required this.title,
+    required this.options,
+    required this.selectedValue,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _FilterSectionTitle(title: title),
+        const SizedBox(height: 8),
+        Container(
+          height: 60,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.shade200, width: 1),
+          ),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: List.generate(options.length, (index) {
+              bool selected = selectedValue == options[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: ChoiceChip(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  backgroundColor: Colors.white,
+                  selectedColor: Appcolor.primarycolor.withOpacity(0.20),
+                  label: Text(
+                    options[index],
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: selected ? Appcolor.primarycolor : Colors.black87,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  selected: false,
+                  onSelected: (value) {
+                    onChanged(options[index]);
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(
+                      color: selected
+                          ? Appcolor.primarycolor
+                          : Colors.grey.shade300,
+                      width: 1,
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ✅ Filter Section Title Widget
 class _FilterSectionTitle extends StatelessWidget {
   final String title;
   const _FilterSectionTitle({required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w600,
-        color: Colors.grey[700],
-      ),
-    );
-  }
-}
-
-// ✅ Dropdown مخصص
-class _CustomDropdown extends StatelessWidget {
-  final String value;
-  final List<String> items;
-  final ValueChanged<String?> onChanged;
-
-  const _CustomDropdown({
-    required this.value,
-    required this.items,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Appcolor.white,
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: DropdownButton<String>(
-          isExpanded: true,
-          value: value,
-          underline: const SizedBox(),
-          items: items
-              .map((item) => DropdownMenuItem(
-            value: item,
-            child: Text(
-              item,
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w600,
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2, left: 2, top: 12),
+      child: Row(
+        children: [
+          Container(
+            width: 5,
+            height: 20,
+            margin: const EdgeInsets.only(right: 2),
+            decoration: BoxDecoration(
+              color: Appcolor.primarycolor,
+              borderRadius: BorderRadius.circular(6),
             ),
-          ))
-              .toList(),
-          onChanged: onChanged,
-        ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 17.sp,
+              fontWeight: FontWeight.w700,
+              color: Colors.grey[800],
+              fontFamily: "cairo",
+            ),
+          ),
+        ],
       ),
     );
   }

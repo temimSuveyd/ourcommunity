@@ -68,7 +68,7 @@ class WelcomeBackUI extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 50.0),
                       child: TextButton(
                         onPressed: () {
-                          Get.toNamed(Approutes.loginPage);
+                          Get.toNamed(AppRoutes.loginPage);
                           // TODO: Navigation
                         },
                         child: Text(
@@ -86,7 +86,7 @@ class WelcomeBackUI extends StatelessWidget {
                     // Sign Up Button (inside white container)
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Approutes.registerPage);
+                        Get.toNamed(AppRoutes.registerPage);
                       },
                       child: Container(
                         padding:

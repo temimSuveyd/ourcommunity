@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:ourcommunity/core/constant/Approutes.dart';
 import 'package:ourcommunity/screen/widgets/onboarding/CustomBottomonboarding.dart';
 import 'package:ourcommunity/screen/widgets/onboarding/Customcontrollel.dart';
 import 'package:ourcommunity/screen/widgets/onboarding/onboardingBody.dart';
@@ -9,7 +8,7 @@ import 'package:ourcommunity/screen/widgets/onboarding/onboardingSkipButton.dart
 import 'package:ourcommunity/screen/widgets/onboarding/onboardingSubtitle.dart';
 import 'package:ourcommunity/screen/widgets/onboarding/onboardingimage.dart';
 import 'package:ourcommunity/screen/widgets/onboarding/onboardingtitle.dart';
-import '../../../../../data/static/static.dart';
+import '../../data/dataScore/static/static.dart';
 import '../../../../controller/onboarding_page.dart';
 
 class Onboarding extends StatelessWidget {
@@ -63,7 +62,6 @@ class Onboarding extends StatelessWidget {
                           ),
                           SizedBox(height: 30.h),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Customcontrolleronboarding(
                                   color: item.controllerColor ?? Colors.black),
@@ -71,15 +69,8 @@ class Onboarding extends StatelessWidget {
                               CustomBottomOnboarding(
                                 textcolor: item.textbuttonColor ?? Colors.white,
                                 color: item.buttonColor ?? Colors.black,
-                                // onPressed: () {
-                                //   if (controller.currentpage ==
-                                //       onboardinglist.length - 1) {
-                                //     Get.offAllNamed(Approutes.welcomeBackUI);
-                                //   } else {
-                                //     controller.next();
-                                //   }
-                                // },
                               ),
+                      
                             ],
                           ),
                         ],

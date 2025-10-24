@@ -10,13 +10,13 @@ class CustomTextFieldContainer extends StatelessWidget {
   final TextInputType keyboardType;
 
   const CustomTextFieldContainer({
-    Key? key,
+    super.key,
    // required this.controller,
     required this.label,
     required this.icon,
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,30 +1,22 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// 🔹 Single Social Icon
+/// 🔹 Social Icon Button - Just shows an icon (no click action)
 class SocialIcon extends StatelessWidget {
   final String path;
-  const SocialIcon(this.path);
+
+  const SocialIcon(
+    this.path, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 50,
-      padding:EdgeInsets.all(10),
-      decoration:  BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          )
-        ],
-      ),
-      child: Image.asset(path, fit: BoxFit.contain),
-    );
+        height: 30,
+        width: 30,
+        padding: const EdgeInsets.all(30),
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(path), fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(15)));
   }
 }

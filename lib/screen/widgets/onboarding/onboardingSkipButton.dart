@@ -15,7 +15,7 @@ class OnboardingSkipButton extends StatelessWidget {
       right: 25.w,
       child: GestureDetector(
         onTap: () {
-          Get.offAllNamed(Approutes.loginPage);
+          Get.offAllNamed(AppRoutes.loginPage);
         },
         child: Text(
           "Skip",

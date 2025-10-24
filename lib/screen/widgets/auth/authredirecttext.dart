@@ -12,7 +12,7 @@ class RegisterRedirectText extends StatelessWidget {
     super.key,
     this.message = "Don’t have an account? ",
     this.actionText = "Register",
-    this.route = Approutes.registerPage,
+    this.route = AppRoutes.registerPage,
     this.actionColor = Colors.blue,
   });
 

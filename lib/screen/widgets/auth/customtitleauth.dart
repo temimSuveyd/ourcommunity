@@ -15,7 +15,7 @@ class Customtitleauth extends StatelessWidget {
     return
        Center(
         child: Text(
-          "${title}"
+          title
          ,
           style: TextStyle(
             fontSize: 30.sp,

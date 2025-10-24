@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:ourcommunity/core/constant/color.dart';
 
 showCustomSnackBar(String message){
@@ -20,7 +19,7 @@ showCustomSnackBar(String message){
             padding: const EdgeInsets.symmetric(
                 horizontal: 16, vertical: 8), // iç boşluk
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(5),
             ),
           ),
         );

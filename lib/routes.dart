@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:ourcommunity/core/Middle_ware/app_middle_ware.dart';
+import 'package:ourcommunity/screen/view/homepage/createeventpage.dart';
+import 'package:ourcommunity/screen/view/homepage/homepage.dart';
 import 'package:ourcommunity/screen/view/onboarding_page.dart';
 import 'package:ourcommunity/screen/view/openscreen.dart';
-import 'package:ourcommunity/screen/view/auth/OTPVerificationPage.dart';
+import 'package:ourcommunity/screen/view/auth/email_waiting_page.dart';
 import 'package:ourcommunity/screen/view/auth/Resetpassword.dart';
 import 'package:ourcommunity/screen/view/auth/forgetpassword_page.dart';
 import 'package:ourcommunity/screen/view/auth/login_page.dart';
@@ -12,68 +15,80 @@ import 'core/constant/Approutes.dart';
 import 'screen/view/auth/register_page.dart';
 
 List<GetPage> routes = [
-  ////////////users
-  //GetPage(name: Approutes.Testview, page: () => Testvi()),
   GetPage(
     name: "/",
-    page: () => OpenScreen(),
+    page: () => HomePage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
+    // middlewares: [AppMiddleware()],
   ),
   GetPage(
-    name: Approutes.onboarding,
+    name: AppRoutes.onboarding,
     page: () => Onboarding(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.welcomeBackUI,
+    name: AppRoutes.welcomeBackUI,
     page: () => WelcomeBackUI(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   ////////////////auth
   GetPage(
-    name: Approutes.registerPage,
+    name: AppRoutes.registerPage,
     page: () => RegisterPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.loginPage,
+    name: AppRoutes.loginPage,
     page: () => LoginPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.forgetpasswordpage,
+    name: AppRoutes.forgetpasswordpage,
     page: () => ForgetPasswordPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.respassword,
+    name: AppRoutes.respassword,
     page: () => ResetPasswordPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.oTPVerificationPage,
-    page: () => OTPVerificationPage(),
+    name: AppRoutes.emailWaitingPage,
+    page: () => EmailWaitingPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
   GetPage(
-    name: Approutes.passwordChangeSuccessPage,
+    name: AppRoutes.passwordChangeSuccessPage,
     page: () => PasswordChangeSuccessPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
 
-  // GetPage(
-  //   name: Approutes.homePage,
-  //   page: () => HomePage(),
-  //   transition: Transition.leftToRightWithFade,
-  //   transitionDuration: const Duration(milliseconds: 300),
-  // ),
+  GetPage(
+    name: AppRoutes.emailWaitingPage,
+    page: () => EmailWaitingPage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 300),
+  ),
+
+  GetPage(
+    name: AppRoutes.homePage,
+    page: () => HomePage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 300),
+  ),
+    GetPage(
+    name: AppRoutes.createEventPage,
+    page: () => CreateEventPage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 300),
+  ),
 ];

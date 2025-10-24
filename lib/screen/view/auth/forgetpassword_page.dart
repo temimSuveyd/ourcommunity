@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ourcommunity/controller/auth/ForgetPasswordController.dart';
 import 'package:ourcommunity/core/class/handlingDataView.dart';
-import 'package:ourcommunity/core/constant/Approutes.dart';
+import 'package:ourcommunity/core/constant/color.dart';
+import 'package:ourcommunity/core/functions/validateField.dart';
+import 'package:ourcommunity/screen/widgets/auth/forget_password_appbar.dart';
 import '../../widgets/auth/authbuttom.dart';
 import '../../widgets/auth/backgroundimage.dart';
 import '../../widgets/auth/customimagewidget.dart';
@@ -25,6 +27,8 @@ class ForgetPasswordPage extends StatelessWidget {
           /// الخلفية
           /// 🔹 Background
           BackgroundImageWidget(),
+          // Uygun ve sade bir AppBar ekle
+          ForgetPasswordAppBar(),
 
           /// الكونتينر في الوسط
           GetBuilder<ForgetPasswordControllerImpl>(
@@ -46,8 +50,8 @@ class ForgetPasswordPage extends StatelessWidget {
                   ],
                 ),
                 child: HandlingDataView(
-                  status: controller.status,
-                  widget: Column(
+                  status: controller.statusR,
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -62,6 +66,11 @@ class ForgetPasswordPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 25),
                       CustomTextField(
+                        validator: (value) => validateField(
+                            fieldType: "email",
+                            maxWords: 40,
+                            minWords: 12,
+                            value: value),
                         controller: controller.emailController,
                         hint: "Email",
                         icon: Icons.email_outlined,

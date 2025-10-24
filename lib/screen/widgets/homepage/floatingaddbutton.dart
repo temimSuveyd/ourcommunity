@@ -1,8 +1,6 @@
 // ✅ زر الإضافة
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../core/constant/Approutes.dart';
 
@@ -13,7 +11,7 @@ class FloatingAddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Get.toNamed(Approutes.createEventPage);
+        Get.toNamed(AppRoutes.createEventPage);
       },
       shape: const CircleBorder(),
       backgroundColor: Colors.blue,

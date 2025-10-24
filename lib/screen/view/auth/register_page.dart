@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:ourcommunity/controller/auth/logincontroller.dart';
 import 'package:ourcommunity/controller/auth/sighupcontroller.dart';
 import 'package:ourcommunity/core/class/handlingDataView.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
 import 'package:ourcommunity/core/constant/color.dart';
+import 'package:ourcommunity/core/functions/validateField.dart';
+import 'package:ourcommunity/data/dataScore/static/auth/citys_data.dart';
+import 'package:ourcommunity/data/dataScore/static/auth/neighborhoodData.dart';
+import 'package:ourcommunity/screen/widgets/auth/dropdownButton.dart';
 
 import '../../widgets/auth/backbuttom.dart';
 import '../../widgets/auth/backgroundimage.dart';
@@ -70,10 +73,11 @@ class _RegisterForm extends StatelessWidget {
     return SingleChildScrollView(
       child: GetBuilder<SignUpControllerImp>(
         builder: (controller) => HandlingDataView(
-          status: controller.status,
-          widget: Form(
+          status: controller.statusR,
+          child: Form(
             key: controller.key,
             child: Column(
+              spacing: 20,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Center(
@@ -86,45 +90,71 @@ class _RegisterForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 5),
 
                 /// user name
                 CustomTextField(
+                  validator: (value) => validateField(
+                      value: value,
+                      fieldType: "name",
+                      minWords: 2,
+                      maxWords: 30),
+                  keyboardType: TextInputType.name,
                   controller: controller.nameController,
-                  hint: "Username",
+                  hint: "اسمك",
                   icon: Icons.person_outline,
                 ),
-
-                /// Username
-                const SizedBox(height: 20),
+                // User age
+                CustomTextField(
+                  validator: (value) => validateField(
+                      value: value, fieldType: "age", minWords: 1, maxWords: 2),
+                  keyboardType: TextInputType.number,
+                  controller: controller.ageController,
+                  hint: "عمرك",
+                  icon: Icons.cake_outlined,
+                ),
                 //  email
                 CustomTextField(
+                  validator: (value) => validateField(
+                      value: value,
+                      fieldType: "email",
+                      minWords: 5,
+                      maxWords: 50),
+                  keyboardType: TextInputType.emailAddress,
                   controller: controller.emailController,
-                  hint: "Email",
+                  hint: "بريد إلكتروني",
                   icon: Icons.email_outlined,
                 ),
-                const SizedBox(height: 20),
 
                 /// Password
                 CustomTextField(
+                  validator: (value) => validateField(
+                      value: value,
+                      fieldType: "password",
+                      minWords: 8,
+                      maxWords: 32),
+                  keyboardType: TextInputType.visiblePassword,
                   controller: controller.passwordController,
-                  hint: "Password",
-                  icon: Icons.lock_open_outlined,
-                  obscure: controller.obscurePassword.value,
-                  suffix: controller.obscurePassword.value
-                      ? Icons.visibility_off
-                      : Icons.visibility,
+                  hint: "كلمة المرور",
+                  icon: Icons.password,
+                  obscure: true,
+                  suffix: Icons.visibility_off,
                   onPressed: () {
                     controller.togglePasswordVisibility();
                   },
                 ),
-                const SizedBox(height: 20),
 
                 /// Confirm Password
                 CustomTextField(
+                  validator: (value) => validateField(
+                      value: value,
+                      fieldType: "password",
+                      minWords: 8,
+                      maxWords: 32),
+                  keyboardType: TextInputType.visiblePassword,
                   controller: controller.confirmPasswordController,
-                  hint: "Confirm Password",
-                  icon: Icons.lock_open_outlined,
+                  hint: "تأكيد كلمة المرور",
+                  icon: Icons.password,
                   obscure: controller.obscureConfirmPassword.value,
                   suffix: controller.obscureConfirmPassword.value
                       ? Icons.visibility_off
@@ -133,11 +163,28 @@ class _RegisterForm extends StatelessWidget {
                     controller.toggleConfirmPasswordVisibility();
                   },
                 ),
-                SizedBox(height: 20.sp),
+
+                // DropdownButton for city selection
+                CustomDropdownButton(
+                  onTap: () => controller.showNeighborhood(),
+                  hintText: controller.cityName ?? "اختر مدينتك",
+                  dataList: cities,
+                  onChanged: (String city) {
+                    controller.changeCity(city);
+                  },
+                ),
+
+                // DropdownButton for neighbourhood selection
+                if (controller.showneighborhood != false)
+                  CustomDropdownButton(
+                    hintText: "حدد الحي الخاص بك",
+                    dataList: neighborhoods[controller.cityName] ?? [],
+                    onChanged: (String mahalle) {
+                      controller.changeneighborhood(mahalle);
+                    },
+                  ),
 
                 const CustomRegisterAgreementText(),
-
-                SizedBox(height: 20.sp),
 
                 /// زر Create Account
                 CustomAuthButton(
@@ -145,23 +192,23 @@ class _RegisterForm extends StatelessWidget {
                   onPressed: () => controller.signUp(),
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 5),
 
                 /// Divider OR
                 const OrDivider(),
 
-                const SizedBox(height: 20),
-
                 /// Social buttons
-                const SocialButtons(),
+                SocialButton(
+                  onTap: () => controller.signUpWithGoogle(),
+                ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 5),
 
                 /// Already have account
                 RegisterRedirectText(
                   message: "Already have an account? ",
                   actionText: "Login",
-                  route: Approutes.loginPage,
+                  route: AppRoutes.loginPage,
                   actionColor: Appcolor.primarycolor,
                 ),
               ],

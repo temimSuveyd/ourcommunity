@@ -7,7 +7,7 @@ class Appcolor{
   static            Color  primarycolor   =const Color.fromRGBO(68, 138, 255, 1);
   static        const    Color  black   =Colors.black;
   static           Color  colorcarddark   =Colors.grey.shade700;
-  static           Color  colorbackground   =Colors.grey.shade800;
+  static           Color  colorbackground   =const Color.fromARGB(255, 255, 255, 255);
   static          Color textcolordark   =Colors.white;
   static          Color textcolor   =Colors.orange.shade500;
   static          Color textcolorlight   =Colors.blueGrey;

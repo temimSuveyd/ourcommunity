@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ourcommunity/core/constant/color.dart';
-import '../../widgets/auth/authbuttom.dart';
 import '../../widgets/auth/authheader.dart';
-import '../../widgets/auth/loginbuttom.dart';
 
 class PasswordChangeSuccessPage extends StatelessWidget {
   const PasswordChangeSuccessPage({super.key});

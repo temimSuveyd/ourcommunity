@@ -5,7 +5,7 @@ class FilterButton extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const FilterButton({required this.icon, required this.text});
+  const FilterButton({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {

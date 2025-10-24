@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ourcommunity/controller/auth/logincontroller.dart';
 import 'package:ourcommunity/core/class/handlingDataView.dart';
-import 'package:ourcommunity/core/constant/Approutes.dart';
+import 'package:ourcommunity/core/functions/validateField.dart';
 import '../../widgets/auth/authbuttom.dart';
 import '../../widgets/auth/authredirecttext.dart';
 import '../../widgets/auth/backbuttom.dart';
@@ -11,7 +11,6 @@ import '../../widgets/auth/backgroundimage.dart';
 import '../../widgets/auth/customforgrttext.dart';
 import '../../widgets/auth/customtextfield.dart';
 import '../../widgets/auth/ordivider.dart';
-import '../../widgets/auth/socailbuttom.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -60,73 +59,86 @@ class _LoginForm extends StatelessWidget {
     return SingleChildScrollView(
       child: GetBuilder<SignInControllerImp>(
         builder: (controller) => HandlingDataView(
-          status: controller.status,
+          status: controller.statusR,
           message: "",
-          widget: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 5.h),
+          child: Form(
+            key: controller.key,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: 5.h),
 
-              /// Title
-              Center(
-                child: Text(
-                  "Welcome Back",
-                  style: TextStyle(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent,
+                /// Title
+                Center(
+                  child: Text(
+                    "Welcome Back",
+                    style: TextStyle(
+                      fontSize: 28.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 25),
+                const SizedBox(height: 25),
 
-              /// Username
-              CustomTextField(
-                  controller: controller.emailController,
-                  hint: "Username or Email",
-                  icon: Icons.person_outline),
-              const SizedBox(height: 20),
+                /// Username
+                CustomTextField(
+                    validator: (value) => validateField(
+                        fieldType: "email",
+                        maxWords: 30,
+                        minWords: 5,
+                        value: value),
+                    controller: controller.emailController,
+                    hint: "Email",
+                    icon: Icons.person_outline),
+                const SizedBox(height: 20),
 
-              /// Password
-              CustomTextField(
-                controller: controller.passwordController,
-                hint: "Password",
-                icon: Icons.lock_outline,
-                obscure: controller.obscurePassword.value,
-                suffix: controller.obscurePassword.value
-                    ? Icons.visibility_off
-                    : Icons.visibility,
-                onPressed: () => controller.togglePasswordVisibility(),
-              ),
+                /// Password
+                CustomTextField(
+                  validator: (value) => validateField(
+                      fieldType: "password",
+                      maxWords: 100,
+                      minWords: 8,
+                      value: value),
+                  controller: controller.passwordController,
+                  hint: "Password",
+                  icon: Icons.lock_outline,
+                  obscure: controller.obscurePassword.value,
+                  suffix: controller.obscurePassword.value
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  onPressed: () => controller.togglePasswordVisibility(),
+                ),
 
-              /// Forgot Password
-              const SizedBox(height: 10),
+                /// Forgot Password
+                const SizedBox(height: 10),
 
-              ///
-              const ForgotPasswordLink(),
+                ///
+                const ForgotPasswordLink(),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              /// Sign in Button
-              CustomAuthButton(
-                label: "Sign in",
-                onPressed: () => controller.signIn(),
-              ),
+                /// Sign in Button
+                CustomAuthButton(
+                  label: "Sign in",
+                  onPressed: () => controller.signIn(),
+                ),
 
-              SizedBox(height: 25.h),
+                SizedBox(height: 25.h),
 
-              /// Divider
-              const OrDivider(),
+                /// Divider
+                const OrDivider(),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              /// Social Buttons
-              // SocialButtons(onPressed: () => controller.signInWithGoogle()),
-              const SizedBox(height: 25),
+                /// Social Buttons
+                // SocialButtons(onPressed: () => controller.signInWithGoogle()),
+                const SizedBox(height: 25),
 
-              /// Register Text
-              const RegisterRedirectText(),
-            ],
+                /// Register Text
+                const RegisterRedirectText(),
+              ],
+            ),
           ),
         ),
       ),

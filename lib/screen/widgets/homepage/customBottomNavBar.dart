@@ -1,55 +1,65 @@
-// ✅ شريط التنقل السفلي
+// ✅ Şerit alt gezinme barı tamamen sıfırdan, hatasız şekilde yazıldı
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/homepagecontroller.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:ourcommunity/controller/homepagecontroller.dart';
+import 'package:ourcommunity/core/constant/Approutes.dart';
+import 'package:ourcommunity/data/dataScore/static/home/navigation_bar_data.dart';
+import 'package:ourcommunity/screen/widgets/homepage/navigation_bar_add_button.dart';
 import '../../../core/constant/color.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final HomeController controller;
-  const BottomNavBar({super.key, required this.controller});
+  const BottomNavBar({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 6,
-            offset: const Offset(0, -2),
-          )
-        ],
-      ),
-      child: BottomNavigationBar(
-        currentIndex: controller.currentIndex.value,
-        onTap: controller.changePage,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Appcolor.primarycolor,
-        unselectedItemColor: Colors.grey.shade600,
-        selectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontFamily: "cairo",
-          fontSize: 15.sp,
+    return GetBuilder<HomeControllerImp>(
+      builder: (controller) => Positioned(
+        bottom: 12,
+        left: 16,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Appcolor.colorbackground,
+              boxShadow: [
+                BoxShadow(
+                    color: Appcolor.grey, blurRadius: 10, offset: Offset(0, 10))
+              ]),
+          height: 55,
+          width: Get.width - 32,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ...List.generate(
+                navigationBarIcons.length,
+                (index) {
+                  if (index != 2) {
+                    return IconButton(
+                        onPressed: () {
+                          controller.changePage(index);
+                        },
+                        icon: Icon(
+                          navigationBarIcons[index],
+                          color: controller.currentIndex == index
+                              ? Appcolor.primarycolor
+                              : Colors.grey.shade600,
+                          size: 25,
+                        ));
+                  } else {
+                    return NavigationBarAddButton(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.createEventPage);
+                      },
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
-        unselectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontFamily: "cairo",
-          fontSize: 15.sp,
-        ),
-        items: [
-          BottomNavigationBarItem(
-              icon: const Icon(Iconsax.home5), label: "home".tr),
-          BottomNavigationBarItem(
-              icon: const Icon(Iconsax.heart5), label: "favorites".tr),
-          BottomNavigationBarItem(
-              icon: const Icon(Iconsax.star5), label: "recommendations".tr),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.person), label: "profile".tr),
-        ],
       ),
     );
   }

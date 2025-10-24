@@ -10,6 +10,8 @@ import '../../../../../core/constant/color.dart';
 
 /// ✅ زر الدفع
 class PayButton extends StatelessWidget {
+  const PayButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

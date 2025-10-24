@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ourcommunity/core/class/custom_snacBar.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
-
+import 'package:ourcommunity/core/constant/Approutes.dart';
+import 'package:ourcommunity/core/constant/dataBase_keys.dart';
+import 'package:ourcommunity/core/constant/sharedPreferences_constans.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class SignUpController extends GetxController {
   void togglePasswordVisibility();
@@ -12,27 +16,33 @@ abstract class SignUpController extends GetxController {
   void signUp();
   void signUpWithGoogle();
   void signUpWithEmail();
-  void statusreqest(Statusreqest _status);
+  void statusreqest(Statusreqest status);
+  void changeCity(String city);
+  void changeneighborhood(String neighborhood);
+  void showNeighborhood();
+  Future saveDataLocal(String userUid);
+  Future addUserDataToDatabase(String userId);
 }
 
 class SignUpControllerImp extends SignUpController {
   final nameController = TextEditingController();
+  final ageController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
-  Statusreqest status = Statusreqest.success;
+  Statusreqest statusR = Statusreqest.success;
   var obscurePassword = true.obs;
   var obscureConfirmPassword = true.obs;
-
-  final GoogleSignIn googlesignUp = GoogleSignIn();
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  String? cityName;
+  String? neighborhoodName;
+  bool showneighborhood = false;
+  final SupabaseClient supabase = Supabase.instance.client;
 
   @override
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
     update();
-
   }
 
   @override
@@ -43,27 +53,32 @@ class SignUpControllerImp extends SignUpController {
 
   @override
   Future<void> signUpWithEmail() async {
-    try {
-      statusreqest(Statusreqest.loading);
-      if (passwordController.text != confirmPasswordController.text) {
-        showCustomSnackBar('Passwords do not match');
-        return;
+    if (key.currentState!.validate()) {
+      try {
+        statusreqest(Statusreqest.loading);
+        if (passwordController.text != confirmPasswordController.text) {
+          showCustomSnackBar('كلمات المرور غير متطابقة');
+          return;
+        }
+        final res = await supabase.auth.signUp(
+          password: passwordController.text.trim(),
+          email: emailController.text.trim(),
+        );
+        if (res.user != null) {
+          final String userId = res.user!.id;
+          await saveDataLocal(userId);
+          await addUserDataToDatabase(userId);
+          Get.toNamed(AppRoutes.emailWaitingPage, arguments: {
+            "email": emailController.text.trim(),
+          });
+        }
+      } on AuthApiException catch (e) {
+        showCustomSnackBar(e.message);
+        statusreqest(Statusreqest.success);
+      } catch (e) {
+        showCustomSnackBar('حدث خطأ');
+        statusreqest(Statusreqest.success);
       }
-
-      await auth.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text,
-      );
-      // Get.offAllNamed(Approutes.homePage); // Navigate to home screen
-    } on FirebaseAuthException catch (e) {
-      showCustomSnackBar(e.message ?? 'An error occurred');
-      statusreqest(Statusreqest.success);
-    } catch (e) {
-   
-       showCustomSnackBar('An error occurred');
-      statusreqest(Statusreqest.success);
-    } finally {
-      statusreqest(Statusreqest.success);
     }
   }
 
@@ -72,20 +87,22 @@ class SignUpControllerImp extends SignUpController {
     try {
       statusreqest(Statusreqest.loading);
 
-      final GoogleSignInAccount? googleUser = await googlesignUp.signIn();
-      if (googleUser == null) return;
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
+      final res = await supabase.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: DatabaseKeys.redirectTo,
       );
+      final user = supabase.auth.currentUser;
+      final userId = user?.id;
 
-      await auth.signInWithCredential(credential);
-      Get.offAllNamed('/home');
+      log('Google userId: $userId');
+      log(res.toString());
+      // Get.offAllNamed(Approutes.homePage);
+    } on AuthApiException catch (e) {
+      showCustomSnackBar(e.message);
+      statusreqest(Statusreqest.success);
     } catch (e) {
-      Get.snackbar('Error', 'Failed to sign in with Google');
+      showCustomSnackBar('حدث خطأ');
+      statusreqest(Statusreqest.success);
     } finally {
       statusreqest(Statusreqest.success);
     }
@@ -97,8 +114,56 @@ class SignUpControllerImp extends SignUpController {
   }
 
   @override
-  void statusreqest(Statusreqest _status) {
-    status = _status;
+  void statusreqest(Statusreqest status) {
+    statusR = status;
+    update();
+  }
+
+  @override
+  void changeCity(String city) {
+    cityName = city;
+    showneighborhood = true;
+    update();
+  }
+
+  @override
+  void changeneighborhood(String neighborhood) {
+    neighborhoodName = neighborhood;
+    update();
+  }
+
+  @override
+  Future saveDataLocal(String userUid) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString(SharedKeys.userUid, userUid);
+    pref.setBool(SharedKeys.isLogin, true);
+  }
+
+  @override
+  Future addUserDataToDatabase(String userId) async {
+    try {
+      final res = await supabase.from('users').insert({
+        "profile_data": {
+          'name': nameController.text.trim(),
+          'email': emailController.text.trim(),
+          'age': int.parse(ageController.text.trim()),
+          'city': cityName,
+          'neighborhood': neighborhoodName,
+          'user_id': userId,
+        },
+      });
+    } on PostgrestException catch (e) {
+      statusreqest(Statusreqest.faliure);
+    }
+  }
+
+  @override
+  void showNeighborhood() {
+    if (showneighborhood == true) {
+      showneighborhood = false;
+    } else {
+      showneighborhood = true;
+    }
     update();
   }
 

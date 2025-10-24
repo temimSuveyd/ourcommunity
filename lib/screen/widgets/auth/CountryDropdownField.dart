@@ -46,7 +46,7 @@ class CountryDropdownField extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: DropdownButtonFormField<String>(
-        value: selectedCountry,
+        initialValue: selectedCountry,
         dropdownColor: Colors.green.shade900,
         iconEnabledColor: Colors.white,
         style: const TextStyle(color: Colors.white, fontFamily: "cairo", fontWeight: FontWeight.bold),

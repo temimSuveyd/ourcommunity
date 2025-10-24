@@ -7,7 +7,7 @@ import 'package:ourcommunity/core/constant/color.dart';
 class AuthButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
-  AuthButton({super.key, required this.onPressed, required this.text});
+  const AuthButton({super.key, required this.onPressed, required this.text});
 
   @override
   Widget build(BuildContext context) {

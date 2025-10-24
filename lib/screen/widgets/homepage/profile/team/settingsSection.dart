@@ -20,7 +20,7 @@ class SettingsSection extends StatelessWidget {
           buttonText: "تعديل المعلومات",
           icon: Icons.settings,
           isPrimary: true,
-          onPressed: () => Get.toNamed(Approutes.editTeamInfoPage),
+          onPressed: () => Get.toNamed(AppRoutes.editTeamInfoPage),
         ),
         SettingItem(
           title: "توثيق الفريق",

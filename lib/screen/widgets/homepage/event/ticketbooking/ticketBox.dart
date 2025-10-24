@@ -10,7 +10,7 @@ import '../../../../../core/constant/color.dart';
 /// ✅ صندوق اختيار التذاكر
 class TicketBox extends StatelessWidget {
   final TicketController controller;
-  const TicketBox({required this.controller});
+  const TicketBox({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class TicketBox extends StatelessWidget {
                   color: Appcolor.grey2,
                   fontFamily: "cairo")),
           const SizedBox(height: 14),
-          Obx(() => Row(
+         Row(
             children: [
               _circleButton(Icons.remove, Colors.grey.shade200,
                   Colors.black, controller.decrease),
@@ -53,7 +53,7 @@ class TicketBox extends StatelessWidget {
               _circleButton(Icons.add, Colors.blue, Colors.white,
                   controller.increase),
             ],
-          )),
+          )
         ],
       ),
     );

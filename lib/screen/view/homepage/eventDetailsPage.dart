@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:ourcommunity/core/constant/Approutes.dart';
-import 'package:ourcommunity/core/constant/color.dart';
 
 import '../../widgets/homepage/event/eventdetails/eventDescription.dart';
 import '../../widgets/homepage/event/eventdetails/eventExtraDetails.dart';

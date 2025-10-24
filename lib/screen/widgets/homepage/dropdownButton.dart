@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DropdownButton extends StatelessWidget {
   final String text;
 
-  const DropdownButton({required this.text});
+  const DropdownButton({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../core/constant/color.dart';
-import '../../../../../data/static/static.dart';
+import '../../../data/dataScore/static/static.dart';
 import '../../../controller/onboarding_page.dart';
 
 
@@ -13,7 +13,7 @@ import '../../../controller/onboarding_page.dart';
 
 class Customcontrolleronboarding extends StatelessWidget {
 final  Color color;
-   Customcontrolleronboarding({super.key, required this.color});
+   const Customcontrolleronboarding({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,7 @@ class ForgotPasswordLink extends StatelessWidget {
     return Align(
       alignment: alignment,
       child: GestureDetector(
-        onTap: () => Get.toNamed(Approutes.forgetpasswordpage),
+        onTap: () => Get.toNamed(AppRoutes.forgetpasswordpage),
         child: Text(
           "Forgot Password?",
           style: TextStyle(

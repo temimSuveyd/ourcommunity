@@ -10,7 +10,7 @@ ThemeData themearabic = ThemeData(
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Appcolor.black),
     bodyLarge: TextStyle(height: 2, fontSize: 17, color: Appcolor.grey, fontWeight: FontWeight.bold),
   ),
-  appBarTheme: AppBarTheme(color: Appcolor.primarycolor, centerTitle: true),
+  appBarTheme: AppBarTheme(backgroundColor: Appcolor.primarycolor, centerTitle: true),
   floatingActionButtonTheme:  FloatingActionButtonThemeData(backgroundColor: Appcolor.primarycolor),
   fontFamily: "cairo",
 );
@@ -24,7 +24,7 @@ ThemeData themearabicDark = ThemeData(
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
     bodyLarge: TextStyle(height: 2, fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),
   ),
-  appBarTheme:  AppBarTheme(color: Appcolor.primarycolor, centerTitle: true),
+  appBarTheme:  AppBarTheme(backgroundColor: Appcolor.primarycolor, centerTitle: true),
   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Appcolor.primarycolor),
   fontFamily: "cairo",
 );
@@ -38,7 +38,7 @@ ThemeData themeEnglish = ThemeData(
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Appcolor.black),
     bodyLarge: TextStyle(height: 2, fontSize: 17, color: Appcolor.grey, fontWeight: FontWeight.bold),
   ),
-  appBarTheme:  AppBarTheme(color: Appcolor.primarycolor, centerTitle: true),
+  appBarTheme:  AppBarTheme(backgroundColor: Appcolor.primarycolor, centerTitle: true),
   floatingActionButtonTheme:  FloatingActionButtonThemeData(backgroundColor: Appcolor.primarycolor),
   fontFamily: "PlayfairDisplay",
 );
@@ -52,7 +52,7 @@ ThemeData themeEnglishDark = ThemeData(
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
     bodyLarge: TextStyle(height: 2, fontSize: 17, color: Colors.white70, fontWeight: FontWeight.bold),
   ),
-  appBarTheme:  AppBarTheme(color: Appcolor.primarycolor, centerTitle: true),
+  appBarTheme:  AppBarTheme(backgroundColor: Appcolor.primarycolor, centerTitle: true),
   floatingActionButtonTheme:  FloatingActionButtonThemeData(backgroundColor: Appcolor.primarycolor),
   fontFamily: "PlayfairDisplay",
 );

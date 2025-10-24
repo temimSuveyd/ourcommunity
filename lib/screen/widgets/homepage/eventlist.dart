@@ -1,49 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../controller/homepagecontroller.dart';
-import '../../../screen/widgets/homepage/eventCard.dart';
-
-import '../../view/homepage/eventDetailsPage.dart';
-
+import 'package:ourcommunity/controller/homepagecontroller.dart';
+import 'package:ourcommunity/core/class/sliver_handlingDataView.dart';
+import 'package:ourcommunity/data/model/event/event_model.dart';
+import 'package:ourcommunity/screen/widgets/homepage/eventCard.dart';
 class EventList extends StatelessWidget {
   const EventList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find<HomeController>();
-
-    return Obx(() => ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: controller.events.length,
-      itemBuilder: (context, index) {
-        final event = controller.events[index];
-
-        return Column(
-          children: [
-            _animatedEventCard(
+    return GetBuilder<HomeControllerImp>(
+      builder: (controller) => SliverHandlingDataView(
+        status: controller.statusR,
+        child: SliverList.builder(
+          itemCount: controller.eventsList.length,
+          itemBuilder: (context, index) {
+            return _animatedEventCard(
               GestureDetector(
-                onTap: () {
-                  Get.to(
-                        () => const EventDetailsPage(),
-                    arguments: event,
-                  );
-                },
+                onTap: () {},
                 child: EventCard(
-                  title: event['title'] ?? "بدون عنوان",
-                  date: event['date'] ?? "",
-                  location: event['location'] ?? "",
-                  image: event['image'] ?? "",
+                  isFavorite: controller.favoriteEventsList
+                      .contains(controller.eventsList[index]["id"]),
+                  toggleFavorite: () {
+                    final eventId = controller.eventsList[index]["id"];
+                    controller.toggleFavoriteEvent(eventId);
+                  },
+                  eventModel: EventModel.fromJson(controller.eventsList[index]),
                 ),
               ),
               index,
-            ),
-            SizedBox(height: 15.h),
-          ],
-        );
-      },
-    ));
+            );
+          },
+        ),
+      ),
+    );
   }
 
   Widget _animatedEventCard(Widget card, int index) {
