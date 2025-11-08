@@ -4,6 +4,6 @@ List navigationBarIcons = [
     Iconsax.home,
     Iconsax.save_2,
     Iconsax.add,
-    Iconsax.document,
+    Iconsax.sms,
     Iconsax.user,
   ];

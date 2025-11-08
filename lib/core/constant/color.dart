@@ -17,4 +17,6 @@ class Appcolor{
   static        const    Color    white =Colors.white;
   static            Color     secondcolor=Colors.blue.shade500;
   static            Color     thirdcolor=Colors.deepPurpleAccent;
+  static            Color     red=Colors.red;
+
 }

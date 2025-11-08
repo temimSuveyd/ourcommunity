@@ -1,5 +1,6 @@
 import 'package:ourcommunity/core/params/event_params.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
+import 'package:ourcommunity/data/model/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EventData {
@@ -21,8 +22,51 @@ class EventData {
       'price': dataModel.price,
       'age_group': dataModel.ageGroup,
       'gender': dataModel.gender,
-      'share_date': DateTime.now(),
+      'share_date': DateTime.now().toIso8601String(),
+      'user_name': dataModel.userName,
+      'user_photo': dataModel.userPhoto,
+      'team_name': dataModel.userPhoto,
+      'category_name': dataModel.categoryName,
     });
+  }
+
+  Future<void> addMemberToEvent({
+    required UserModel userModel,
+    required String userUid,
+    required int eventId,
+  }) async {
+    return await supabase.from('event_members').insert({
+      "profile_data": {
+        'name': userModel.name,
+        'email': userModel.email,
+        'age': userModel.age,
+        'city': userModel.city,
+        'neighborhood': userModel.neighborhood,
+        'photo': userModel.photo,
+        'user_id': userModel.id,
+      },
+      'event_id': eventId,
+    });
+  }
+
+  Future<void> deleteMemberFromEvent({
+    required int userId,
+    required int eventId,
+  }) async {
+    await supabase.from('event_members').delete().match({
+      'event_id': eventId,
+      'profile_data->>user_id': userId,
+    });
+  }
+
+  Future<bool> userInEvent(int eventId, int userId) async {
+    final result = await supabase
+        .from("event_members")
+        .select("id")
+        .eq('profile_data->>user_id', userId.toString())
+        .eq("event_id", eventId)
+        .maybeSingle();
+    return result != null;
   }
 
   Stream<List<Map<String, dynamic>>> getFilteredEvents(EventParams params) {
@@ -32,7 +76,7 @@ class EventData {
       query = query.eq("governorate", params.governorate!);
     }
     if (params.price != "All") {
-      query = query.eq("price", params.price!);
+      query = query.eq("payment_type", params.price!);
     }
     if (params.ageGroup != "All") {
       query = query.eq("age_group", params.ageGroup!);
@@ -71,7 +115,18 @@ class EventData {
   }
 
   Stream<List<Map<String, dynamic>>> getAllEvents(String city) {
-    return supabase.from("events").stream(primaryKey: ["id"]).eq("city", city);
-    // .order("share_date", ascending: false);
+    return supabase
+        .from("events")
+        .stream(primaryKey: ["id"])
+        .eq("city", city)
+        .order("share_date", ascending: false);
   }
+  Stream<List<Map<String, dynamic>>> getEventMembersStream(int eventId) {
+    return supabase
+        .from('event_members')
+        .stream(primaryKey: ['id'])
+        .eq('event_id', eventId);
+  }
+
+
 }

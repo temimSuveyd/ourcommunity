@@ -29,7 +29,7 @@ class FavoriteEventsData {
         .eq("event_id", params.eventId!);
   }
 
-  Stream<List<int>> getAllFavoriteEventsIdAsStream(int userId) {
+  Stream<List<int>> getAllFavoriteEventsIdAsStream({required int userId}) {
     return supabase
         .from("favorites_events")
         .stream(primaryKey: ["id"])
@@ -38,6 +38,15 @@ class FavoriteEventsData {
             list.map<int>((item) => item["event_id"] as int).toList());
     // .order("share_date", ascending: false);
   }
+    Future<bool> isEventFavorited({required int userId, required int eventId}) async {
+      final result = await supabase
+          .from("favorites_events")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("event_id", eventId)
+          .maybeSingle();
+      return result != null;
+    }
     Future<List<int>> getAllFavoriteEventsId(int userId) {
     return supabase
         .from("favorites_events")

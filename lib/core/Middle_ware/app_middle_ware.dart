@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
 import 'package:ourcommunity/core/constant/sharedPreferences_constans.dart';
-import 'package:ourcommunity/services/servieses.dart';
+import 'package:ourcommunity/core/services/servieses.dart';
 
 class AppMiddleware extends GetMiddleware {
   Services appService = Get.find();

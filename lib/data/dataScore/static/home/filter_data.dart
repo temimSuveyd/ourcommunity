@@ -16,3 +16,5 @@ final genderOptions = [
   'Mixed',
 ];
 final eventState = ['All', 'Ongoing', 'Ended', 'Started', 'Unstarted'];
+final genderList = ["All", "Mixed", "Male", "Female"];
+final ageGroupList = ["All", "Kids", "Youth", "adults"];

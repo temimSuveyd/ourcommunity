@@ -5,14 +5,21 @@ class EventModel {
   String? startDate;
   String? endDate;
   String? city;
+  String? governorate;
+  int? price;
+  String? ageGroup;
+  String? gender;
+  String? userName;
+  String? userPhoto;
+  String? teamName;
+  String? categoryName;
+  String? paymetState;
+  DateTime? sharedDate;
+  int? userId;
   int? categoryId;
   int? teamId;
-  String? governorate;
-  int? userId;
   int? numberOfPraticipants;
-  String? price;      // added, default/nullable
-  String? ageGroup;   // added, default/nullable
-  String? gender;     // added, default/nullable
+  int? id;
   EventModel({
     required this.title,
     required this.description,
@@ -25,9 +32,16 @@ class EventModel {
     required this.governorate,
     required this.numberOfPraticipants,
     required this.userId,
-    this.price,
-    this.ageGroup,
-    this.gender,
+    required this.price,
+    required this.ageGroup,
+    required this.gender,
+    this.id,
+    required this.categoryName,
+    required this.teamName,
+    required this.userName,
+    required this.userPhoto,
+    required this.paymetState,
+    required this.sharedDate,
   });
 
   factory EventModel.fromJson(Map<String, dynamic> json) {
@@ -45,9 +59,16 @@ class EventModel {
           ? json['number_of_praticipants']
           : int.tryParse(json['number_of_praticipants']?.toString() ?? ''),
       userId: json['user_id'] as int?,
-      price: json['price'] as String?,         // nullable, no default
-      ageGroup: json['age_group'] as String?,  // nullable, no default
-      gender: json['gender'] as String?,       // nullable, no default
+      price: json['price'] as int?,
+      ageGroup: json['age_group'] as String?,
+      gender: json['gender'] as String?,
+      id: json['id'] as int?,
+      categoryName: json['category_name'] as String?,
+      teamName: json['team_name'] as String?,
+      userName: json['user_name'] as String?,
+      userPhoto: json['user_photo'] as String?,
+      paymetState: json['payment_type'] as String?,
+      sharedDate: json['shared_date'] as DateTime?,
     );
   }
 }

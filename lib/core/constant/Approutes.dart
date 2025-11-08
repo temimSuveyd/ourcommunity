@@ -23,7 +23,13 @@ class AppRoutes {
   static const String createTeamPage = "/CreateTeamPage";
   static const String editTeamInfoPage = "/EditTeamInfoPage";
   static const String teamVerificationPage = "/TeamVerificationPage";
+  static const String profilePage = "/profilePage";
+
   ////////////////////////////
   static const String quraaAldasmaPage = "/QuraaAldasmaPage";
   static const String inviteMemberPage = "/InviteMemberPage";
+  static const String allUsersViewPage = "/allUsersViewPage";
+  static const String myEventsPage = "/myEventsPage";
+
+
 }
