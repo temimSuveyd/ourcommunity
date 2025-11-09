@@ -1,12 +1,15 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ourcommunity/core/class/custom_snacBar.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
 import 'package:ourcommunity/core/constant/dataBase_keys.dart';
 import 'package:ourcommunity/core/constant/sharedPreferences_constans.dart';
+import 'package:ourcommunity/core/functions/upload_images.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -37,6 +40,8 @@ class SignUpControllerImp extends SignUpController {
   var obscureConfirmPassword = true.obs;
   String? cityName;
   String? neighborhoodName;
+  String coverImage =
+      'https://th.bing.com/th/id/OIP.dILKQaE2Zomd33DK3_HdPAAAAA?o=7&cb=ucfimgc2rm=3&rs=1&pid=ImgDetMain&o=7&rm=3';
   bool showneighborhood = false;
   bool? isAccountVerified;
   final SupabaseClient supabase = Supabase.instance.client;
@@ -62,6 +67,7 @@ class SignUpControllerImp extends SignUpController {
           showCustomSnackBar('كلمات المرور غير متطابقة');
           return;
         }
+
         final res = await supabase.auth.signUp(
           password: passwordController.text.trim(),
           email: emailController.text.trim(),
@@ -150,7 +156,7 @@ class SignUpControllerImp extends SignUpController {
           'city': cityName,
           'neighborhood': neighborhoodName,
           'user_id': userId,
-          'photo': '',
+          'photo': coverImage,
         },
       });
     } on PostgrestException catch (e) {
@@ -192,5 +198,30 @@ class SignUpControllerImp extends SignUpController {
         isAccountVerified = isEmailVerified;
       }
     });
+  }
+
+  Future<void> pickImage() async {
+    statusreqest(Statusreqest.loading);
+
+    final picked = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 20,
+    );
+
+    if (picked != null) {
+      try {
+        final file = File(picked.path);
+        final uploadPreset = 'events_images';
+        final imageUrl = await uploadFileToCloudinary(file, uploadPreset);
+        if (imageUrl != null) {
+          coverImage = imageUrl;
+          statusreqest(Statusreqest.success);
+        } else {
+          statusreqest(Statusreqest.faliure);
+        }
+      } catch (e) {
+        statusreqest(Statusreqest.faliure);
+      }
+    }
   }
 }

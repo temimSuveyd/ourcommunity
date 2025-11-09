@@ -43,12 +43,12 @@ class RegisterPage extends StatelessWidget {
             child: Container(
               height: height * 0.80,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(35)),
                 boxShadow: [
                   BoxShadow(
-                   color: Appcolor.shadowColor,
+                    color: Appcolor.shadowColor,
                     blurRadius: 10,
                     spreadRadius: 3,
                     offset: Offset(0, -3),
@@ -91,6 +91,40 @@ class _RegisterForm extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 5),
+
+                /// Profile Picture Picker
+                Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 42,
+                        backgroundColor: Colors.grey[200],
+                        backgroundImage: NetworkImage(controller.coverImage),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 4,
+                        child: InkWell(
+                          onTap: () async {
+                            await controller.pickImage();
+                          },
+                          borderRadius: BorderRadius.circular(22),
+                          child: CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.blue.shade600,
+                            child: Icon(
+                              Icons.camera_alt_rounded,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 18),
 
                 /// user name
                 CustomTextField(
