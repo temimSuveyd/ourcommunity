@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'onboarding_page.dart';
 
-
 class OpenScreen extends StatelessWidget {
   const OpenScreen({super.key});
 
@@ -14,9 +13,12 @@ class OpenScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
       body: Center(
-        child: Image.asset('asset/images/logo.png', width: 600,height: 500,), // شعار التطبيق
+        child: Image.asset(
+          'asset/images/logo.png',
+          width: 600,
+          height: 500,
+        ), // شعار التطبيق
       ),
     );
   }

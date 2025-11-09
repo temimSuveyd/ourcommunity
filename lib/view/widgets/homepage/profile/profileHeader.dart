@@ -17,15 +17,15 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+      margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 60.w),
       decoration: BoxDecoration(
-        color: Appcolor.white,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(color: Appcolor.grey.withOpacity(0.3)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Appcolor.cardColor.withOpacity(0.05),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -44,7 +44,7 @@ class ProfileHeader extends StatelessWidget {
               fontSize: 18.sp,
               fontFamily: "cairo",
               fontWeight: FontWeight.bold,
-              color: Appcolor.black,
+              color: Appcolor.primarTextcolor,
             ),
           ),
           SizedBox(height: 4.h),

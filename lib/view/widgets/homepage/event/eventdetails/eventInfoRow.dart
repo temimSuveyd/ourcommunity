@@ -22,10 +22,10 @@ class EventInfoRow extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: Appcolor.primarycolor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              child: Icon(Icons.calendar_today, size: 18.sp, color: Colors.blue.shade700),
+              child: Icon(Icons.calendar_today, size: 18.sp, color: Appcolor.primarycolor),
             ),
             SizedBox(width: 12.w),
             Expanded(
@@ -36,7 +36,7 @@ class EventInfoRow extends StatelessWidget {
                     "Date",
                     style: TextStyle(
                       fontSize: 12.sp,
-                      color: Colors.grey.shade600,
+                      color: Appcolor.primarTextcolor,
                       fontWeight: FontWeight.w500,
                       fontFamily: "cairo",
                     ),
@@ -45,7 +45,7 @@ class EventInfoRow extends StatelessWidget {
                     eventModel.startDate!,
                     style: TextStyle(
                       fontSize: 15.sp,
-                      color: Colors.black87,
+                      color: Appcolor.secondTextcolor,
                       fontWeight: FontWeight.w600,
                       fontFamily: "cairo",
                     ),
@@ -61,7 +61,7 @@ class EventInfoRow extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
-                color: Appcolor.primarycolor.withOpacity(0.1),
+                color: Appcolor.primarycolor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Icon(Icons.location_on, size: 18.sp, color: Appcolor.primarycolor),
@@ -75,7 +75,7 @@ class EventInfoRow extends StatelessWidget {
                     "Location",
                     style: TextStyle(
                       fontSize: 12.sp,
-                      color: Colors.grey.shade600,
+                      color: Appcolor.primarTextcolor,
                       fontWeight: FontWeight.w500,
                       fontFamily: "cairo",
                     ),
@@ -84,7 +84,7 @@ class EventInfoRow extends StatelessWidget {
                     "${eventModel.city} / ${eventModel.governorate}",
                     style: TextStyle(
                       fontSize: 15.sp,
-                      color: Colors.black87,
+                      color: Appcolor.secondTextcolor,
                       fontWeight: FontWeight.w600,
                       fontFamily: "cairo",
                     ),

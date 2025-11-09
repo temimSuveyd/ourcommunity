@@ -8,7 +8,8 @@ class CustomDropdownButton extends StatelessWidget {
     required this.dataList,
     required this.onChanged,
     required this.hintText,
-    this.onTap, this.height, 
+    this.onTap,
+    this.height,
   });
   final List<String> dataList;
   final Function(String) onChanged;
@@ -27,71 +28,87 @@ class CustomDropdownButton extends StatelessWidget {
           width: 1.5,
         ),
       ),
-      child: DropdownButtonFormField<String>(
-        onTap: () {
-          if (onTap != null) {
-            onTap!();
-          }
-        },
-        dropdownColor: Colors.white,
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: TextStyle(
-            overflow: TextOverflow.ellipsis,
-            color: Appcolor.grey,
-            fontWeight: FontWeight.w500,
-            fontSize: 14.sp,
-            fontFamily: "cairo",
-          ),
-          filled: true,
-          fillColor: Colors.transparent,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide.none,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(
-              color: Appcolor.primarycolor,
-              width: 1.5,
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          hintColor: Appcolor.secondTextcolor, // Anahtar değişiklik!
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              color: Appcolor.secondTextcolor,
+              fontWeight: FontWeight.w500,
+              fontSize: 14.sp,
+              fontFamily: "cairo",
             ),
           ),
         ),
-        style: TextStyle(
-          fontSize: 14.sp,
-          color: Appcolor.black,
-          fontFamily: "cairo",
-          fontWeight: FontWeight.w500,
-        ),
-        icon: Icon(
-          Icons.arrow_drop_down_rounded,
-          color: Appcolor.primarycolor,
-          size: 20.sp,
-        ),
-        items: dataList
-            .toSet()
-            .map((item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontFamily: "cairo",
-                      fontWeight: FontWeight.w500,
+        child: DropdownButtonFormField<String>(
+          onTap: () {
+            if (onTap != null) {
+              onTap!();
+            }
+          },
+          dropdownColor: Appcolor.backgroundColor,
+          decoration: InputDecoration(
+            hintText: hintText,
+            // hintStyle buradan ister çıkarılabilir ister bırakılabilir, Theme üstte override eder.
+            hintStyle: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              color: Appcolor.secondTextcolor,
+              fontWeight: FontWeight.w500,
+              fontSize: 14.sp,
+              fontFamily: "cairo",
+            ),
+            filled: true,
+            fillColor: Appcolor.backgroundColor,
+            contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: Appcolor.primarycolor,
+                width: 1.5,
+              ),
+            ),
+          ),
+          style: TextStyle(
+            fontSize: 14.sp,
+            color: Appcolor.primarTextcolor,
+            fontFamily: "cairo",
+            fontWeight: FontWeight.w500,
+          ),
+          icon: Icon(
+            Icons.arrow_drop_down_rounded,
+            color: Appcolor.primarycolor,
+            size: 20.sp,
+          ),
+          items: dataList
+              .toSet()
+              .map((item) => DropdownMenuItem<String>(
+                    value: item,
+                    child: Text(
+                      item,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontFamily: "cairo",
+                        fontWeight: FontWeight.w500,
+                        color: Appcolor.secondTextcolor,
+                      ),
                     ),
-                  ),
-                ))
-            .toList(),
-        onChanged: (value) {
-          if (value != null) {
-            onChanged(value);
-          }
-        },
+                  ))
+              .toList(),
+          onChanged: (value) {
+            if (value != null) {
+              onChanged(value);
+            }
+          },
+        ),
       ),
     );
   }

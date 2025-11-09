@@ -26,6 +26,7 @@ class ProfileOptionTile extends StatelessWidget {
           fontSize: 16.sp,
           fontFamily: "cairo",
           fontWeight: FontWeight.w600,
+          color: Appcolor.primarTextcolor
         ),
       ),
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Appcolor.grey),

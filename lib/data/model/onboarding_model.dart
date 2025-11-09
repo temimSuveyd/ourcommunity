@@ -6,7 +6,7 @@ class OnboardingModel {
   final String? subtitle;
   final String? image;
   final String? body;
-  final Color? backgroundColor; // لون الخلفية المخصص
+  final Color? cardsColor; // لون الخلفية المخصص
   final Color? titleColor;      // لون العنوان
   final Color? subtitleColor;   // لون العنوان الفرعي
   final Color? bodyColor;       // لون النص الأساسي
@@ -19,7 +19,7 @@ class OnboardingModel {
     this.subtitle,
     this.image,
     this.body,
-    this.backgroundColor,
+    this.cardsColor,
     this.titleColor,
     this.subtitleColor,
     this.bodyColor,

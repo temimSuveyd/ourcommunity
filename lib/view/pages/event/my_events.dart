@@ -5,7 +5,7 @@ import 'package:ourcommunity/core/class/handlingDataView.dart';
 import 'package:ourcommunity/core/constant/color.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
 import 'package:ourcommunity/view/widgets/custom_widgets/app_bar.dart';
-import 'package:ourcommunity/view/widgets/homepage/eventCard.dart';
+import 'package:ourcommunity/view/widgets/homepage/event_card.dart';
 
 class MyEventsPage extends StatelessWidget {
   const MyEventsPage({super.key});
@@ -15,7 +15,6 @@ class MyEventsPage extends StatelessWidget {
     Get.lazyPut(() => MyEventsControllerImp());
     return Scaffold(
       appBar: CustomAppBar('My Events', () => Get.back(),),
-      backgroundColor: Appcolor.colorbackground,
       body: SafeArea(
         child: GetBuilder<MyEventsControllerImp>(
           builder: (controller) => Padding(

@@ -27,10 +27,15 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboard,
+      style: TextStyle(
+          color: Appcolor.primarTextcolor,
+          fontWeight: FontWeight.w500,
+          fontSize: 14.sp,
+          fontFamily: "cairo"),
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(
-            color: Appcolor.grey,
+            color: Appcolor.secondTextcolor,
             fontWeight: FontWeight.w500,
             fontSize: 14.sp,
             fontFamily: "cairo"),
@@ -38,7 +43,8 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Appcolor.grey.withOpacity(0.3), width: 1.5),
+          borderSide:
+              BorderSide(color: Appcolor.grey.withOpacity(0.3), width: 1.5),
           borderRadius: BorderRadius.circular(12.r),
         ),
         focusedBorder: OutlineInputBorder(

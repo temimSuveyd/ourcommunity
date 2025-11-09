@@ -19,13 +19,12 @@ class FilterDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Appcolor.backgroundColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Appcolor.shadowColor.withOpacity(0.05),
               blurRadius: 16,
               offset: const Offset(-8, 0),
             ),
@@ -192,7 +191,7 @@ class FilterDrawer extends StatelessWidget {
                       icon: Iconsax.refresh,
                     ),
 
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 70),
                   ],
                 ),
               ),
@@ -277,9 +276,9 @@ class CustomChoiceChipFilter extends StatelessWidget {
           height: 60,
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
+            color: Appcolor.backgroundColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey.shade200, width: 1),
+            border: Border.all(color: Appcolor.grey, width: 0.5),
           ),
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -290,13 +289,14 @@ class CustomChoiceChipFilter extends StatelessWidget {
                 child: ChoiceChip(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                  backgroundColor: Colors.white,
-                  selectedColor: Appcolor.primarycolor.withOpacity(0.20),
+                  backgroundColor: Appcolor.backgroundColor,
                   label: Text(
                     options[index],
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: selected ? Appcolor.primarycolor : Colors.black87,
+                      color: selected
+                          ? Appcolor.primarycolor
+                          : Appcolor.secondTextcolor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -307,10 +307,8 @@ class CustomChoiceChipFilter extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                     side: BorderSide(
-                      color: selected
-                          ? Appcolor.primarycolor
-                          : Colors.grey.shade300,
-                      width: 1,
+                      color: selected ? Appcolor.primarycolor : Appcolor.grey,
+                      width: 0.5,
                     ),
                   ),
                 ),
@@ -348,8 +346,8 @@ class _FilterSectionTitle extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 17.sp,
-              fontWeight: FontWeight.w700,
-              color: Colors.grey[800],
+              fontWeight: FontWeight.w600,
+              color: Appcolor.secondTextcolor,
               fontFamily: "cairo",
             ),
           ),

@@ -137,4 +137,11 @@ List<GetPage> routes = [
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
+
+          GetPage(
+    name: AppRoutes.settingsPage,
+    page: () => SettingsPage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 300),
+  ),
 ];

@@ -5,7 +5,7 @@ class CustomIconCard extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final double iconSize;
-  final Color backgroundColor;
+  final Color cardsColor;
   final double elevation;
 
   const CustomIconCard({
@@ -13,7 +13,7 @@ class CustomIconCard extends StatelessWidget {
     required this.icon,
     this.iconColor = Colors.white,
     this.iconSize = 80,
-    this.backgroundColor = Colors.white10,
+    this.cardsColor = Colors.white10,
     this.elevation = 8,
   });
 
@@ -24,7 +24,7 @@ class CustomIconCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
       ),
       elevation: elevation,
-      color: backgroundColor,
+      color: cardsColor,
       child: Padding(
         padding: EdgeInsets.all(20.w),
         child: Icon(

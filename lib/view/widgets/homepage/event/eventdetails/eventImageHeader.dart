@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ourcommunity/core/constant/color.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
 
 class EventImageHeader extends StatelessWidget {
@@ -25,8 +26,8 @@ class EventImageHeader extends StatelessWidget {
             height: 280.h,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
-              return Image.asset(
-                "assets/images/default_event.png",
+              return Image.network(
+                eventModel.photo!,
                 width: double.infinity,
                 height: 280.h,
                 fit: BoxFit.cover,
@@ -51,9 +52,9 @@ class EventImageHeader extends StatelessWidget {
           right: 16.w,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Appcolor.cardColor,
               borderRadius: BorderRadius.circular(20.r),
-              border: Border.all(color: Colors.grey.shade100, width: 1),
+              border: Border.all(color:Appcolor.grey, width: 0.5),
             ),
             child: Padding(
               padding: EdgeInsets.all(24.w),
@@ -65,7 +66,7 @@ class EventImageHeader extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                      color: Appcolor.primarTextcolor,
                       fontFamily: "cairo",
                       height: 1.2,
                     ),
@@ -79,13 +80,12 @@ class EventImageHeader extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border:
-                              Border.all(color: Colors.grey.shade200, width: 2),
+                              Border.all(color: Appcolor.grey, width: 2),
                         ),
                         child: CircleAvatar(
                           radius: 18.r,
                           backgroundImage: NetworkImage(
-                            eventModel.userPhoto ??
-                                "https://via.placeholder.com/150",
+                            eventModel.userPhoto ??'',
                           ),
                         ),
                       ),
@@ -95,20 +95,20 @@ class EventImageHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              eventModel.teamName ?? "no data",
+                              eventModel.teamName ?? "",
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.grey.shade600,
+                                color: Appcolor.secondTextcolor ,
                                 fontFamily: "cairo",
                               ),
                             ),
                             Text(
-                              eventModel.userName ?? "Unknown Organizer",
+                              eventModel.userName ?? "",
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black87,
+                                color: Appcolor.primarTextcolor,
                                 fontFamily: "cairo",
                               ),
                             ),

@@ -22,10 +22,10 @@ class BottomNavBar extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Appcolor.colorbackground,
+              color: Appcolor.cardColor,
               boxShadow: [
                 BoxShadow(
-                    color: Appcolor.grey, blurRadius: 10, offset: Offset(0, 10))
+                      color: Appcolor.shadowColor,  blurRadius: 10, offset: Offset(0, 10))
               ]),
           height: 60,
           width: Get.width - 32,

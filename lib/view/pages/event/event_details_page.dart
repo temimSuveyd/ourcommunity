@@ -18,7 +18,6 @@ class EventDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut(() => EventDetailsControllerImp());
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
       body: GetBuilder<EventDetailsControllerImp>(
         builder: (controller) => HandlingDataView(
           status: controller.statusR,
@@ -35,9 +34,9 @@ class EventDetailsPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 16.w),
                   padding: EdgeInsets.all(20.w),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Appcolor.cardColor,
                     borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(color: Colors.grey.shade100, width: 1),
+                    border: Border.all(color: Appcolor.grey, width: 0.5),
                   ),
                   child: EventInfoRow(
                     eventModel: controller.eventModel!,
@@ -50,9 +49,9 @@ class EventDetailsPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 16.w),
                   padding: EdgeInsets.all(20.w),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Appcolor.cardColor,
                     borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(color: Colors.grey.shade100, width: 1),
+                    border: Border.all(color: Appcolor.grey, width: 0.5),
                   ),
                   child: EventDescription(
                     eventModel: controller.eventModel!,
@@ -65,9 +64,9 @@ class EventDetailsPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 16.w),
                   padding: EdgeInsets.all(20.w),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Appcolor.cardColor,
                     borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(color: Colors.grey.shade100, width: 1),
+                    border: Border.all(color:Appcolor.grey, width: 0.5),
                   ),
                   child: EventExtraDetails(
                     eventModel: controller.eventModel!,
@@ -77,7 +76,7 @@ class EventDetailsPage extends StatelessWidget {
               SliverToBoxAdapter(child: SizedBox(height: 24.h)),
               GetBuilder<EventDetailsControllerImp>(
                 builder: (controller) {
-                  if (controller.isBuilder!) {
+                  if (controller.isBuilder) {
                     return EventMemebersListView();
                   } else {
                     return SliverToBoxAdapter(
@@ -85,7 +84,7 @@ class EventDetailsPage extends StatelessWidget {
                         margin: EdgeInsets.symmetric(horizontal: 16.w),
                         padding: EdgeInsets.all(20.w),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Appcolor.cardColor,
                           borderRadius: BorderRadius.circular(16.r),
                           border:
                               Border.all(color: Colors.grey.shade100, width: 1),

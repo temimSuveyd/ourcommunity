@@ -17,7 +17,6 @@ class TeamViewPage extends GetView<TeamViewControllerImp> {
       () => TeamViewControllerImp(),
     );
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: CustomAppBar(
         controller.teamModel!.teamName!,
         () => controller.backToLastPage(controller.teamModel!),
@@ -53,5 +52,4 @@ class TeamViewPage extends GetView<TeamViewControllerImp> {
       ),
     );
   }
-
 }

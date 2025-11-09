@@ -21,6 +21,7 @@ class EventCard extends StatelessWidget {
     final imageUrl = event["image"] ?? "";
 
     return Card(
+      color: Appcolor.cardColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -93,7 +94,7 @@ class EventCard extends StatelessWidget {
                     fontSize: 16.sp,
                     fontFamily: "cairo",
                     fontWeight: FontWeight.bold,
-                    color: Appcolor.black,
+                    color: Appcolor.primarTextcolor,
                   ),
                 ),
                 SizedBox(height: 6.h),
@@ -108,7 +109,7 @@ class EventCard extends StatelessWidget {
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: "cairo",
-                        color: Appcolor.grey,
+                        color: Appcolor.secondTextcolor,
                       ),
                     ),
                   ],
@@ -125,7 +126,7 @@ class EventCard extends StatelessWidget {
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: "cairo",
-                        color: Appcolor.grey,
+                        color: Appcolor.secondTextcolor,
                       ),
                     ),
                   ],

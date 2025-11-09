@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ourcommunity/controller/home/home_page_controller.dart';
 import 'package:ourcommunity/core/class/sliver_handlingDataView.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
-import 'package:ourcommunity/view/widgets/homepage/eventCard.dart';
+import 'package:ourcommunity/view/widgets/homepage/event_card.dart';
 
 class EventList extends StatelessWidget {
   const EventList({super.key});

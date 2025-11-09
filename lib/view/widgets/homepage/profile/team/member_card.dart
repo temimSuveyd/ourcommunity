@@ -17,14 +17,14 @@ class MemberCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
-            color: isAdmin ? Appcolor.primarycolor : Colors.grey.shade300,
-            width: 1),
+            color: isAdmin ? Appcolor.primarycolor : Appcolor.grey,
+            width: 0.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Appcolor.shadowColor.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -47,14 +47,14 @@ class MemberCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
-                  color: Appcolor.black,
+                  color: Appcolor.primarTextcolor,
                 ),
               ),
               Text(
                 memberModel.userRole!,
                 style: TextStyle(
                   fontSize: 14.sp,
-                  color: Colors.grey[600],
+                  color: Appcolor.secondTextcolor,
                 ),
               ),
             ],

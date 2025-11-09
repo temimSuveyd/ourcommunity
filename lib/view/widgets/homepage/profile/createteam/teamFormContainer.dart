@@ -39,7 +39,7 @@ class TeamFormContainer extends StatelessWidget {
                     fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: "cairo",
-                    color: Appcolor.black,
+                    color: Appcolor.primarTextcolor,
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -49,7 +49,7 @@ class TeamFormContainer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontFamily: "cairo",
-                    color: Appcolor.grey2,
+                    color: Appcolor.secondTextcolor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -70,7 +70,7 @@ class TeamFormContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: Appcolor.white,
+        color: Appcolor.cardColor,
         border: Border.all(color: Appcolor.grey),
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
@@ -138,7 +138,7 @@ class TeamFormContainer extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 15.sp,
-            color: Appcolor.black,
+            color: Appcolor.primarTextcolor,
             fontWeight: FontWeight.bold,
             fontFamily: "cairo",
           ),
@@ -184,7 +184,7 @@ class TeamFormContainer extends StatelessWidget {
           "Team logo",
           style: TextStyle(
             fontSize: 15.sp,
-            color: Appcolor.black,
+            color: Appcolor.primarTextcolor,
             fontWeight: FontWeight.bold,
             fontFamily: "cairo",
           ),

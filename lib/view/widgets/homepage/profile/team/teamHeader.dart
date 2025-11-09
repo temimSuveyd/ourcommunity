@@ -14,9 +14,9 @@ class TeamHeader extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: Colors.grey.shade300),
+        color: Appcolor.cardColor,
+        borderRadius: BorderRadius.circular(14.r),
+        border: Border.all(color: Appcolor.grey,width: 0.5),
       ),
       child: GetBuilder<TeamViewControllerImp>(
         builder: (controller) => Column(
@@ -32,7 +32,7 @@ class TeamHeader extends StatelessWidget {
               controller.teamModel!.teamName!,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Appcolor.black,
+                color: Appcolor.primarTextcolor,
                 fontSize: 22.sp,
               ),
             ),
@@ -41,8 +41,8 @@ class TeamHeader extends StatelessWidget {
               controller.teamModel!.teamDescription!,
               style: TextStyle(
                 fontSize: 15.sp,
-                color: Colors.grey[700],
-                fontWeight: FontWeight.bold,
+                color: Appcolor.secondTextcolor,
+                fontWeight: FontWeight.normal,
               ),
               textAlign: TextAlign.center,
             ),

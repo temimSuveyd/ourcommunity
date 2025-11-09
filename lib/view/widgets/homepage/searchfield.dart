@@ -29,7 +29,9 @@ class SearchField extends StatelessWidget {
           ),
           suffixIcon: Icon(Iconsax.microphone5, color: Appcolor.primarycolor),
           filled: true,
-          fillColor: Appcolor.grey2,
+          fillColor: Appcolor.backgroundColor == Appcolor.lighetThemeBackground
+              ? const Color.fromARGB(255, 239, 239, 239)
+              : Appcolor.cardColor,
           contentPadding:
               EdgeInsets.symmetric(vertical: 14.h, horizontal: 12.w),
           border: OutlineInputBorder(

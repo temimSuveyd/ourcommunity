@@ -30,7 +30,7 @@ class MembersSection extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
-                      color: Appcolor.black,
+                      color: Appcolor.primarTextcolor,
                     ),
                   ),
                 ],
@@ -62,7 +62,7 @@ class MembersSection extends StatelessWidget {
                 label: Text(
                   "Invite",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Appcolor.primarTextcolor,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),

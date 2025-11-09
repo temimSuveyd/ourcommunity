@@ -42,7 +42,7 @@ class ForgetPasswordPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(35),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: Appcolor.shadowColor,
                       blurRadius: 10,
                       spreadRadius: 2,
                       offset: const Offset(0, 4),

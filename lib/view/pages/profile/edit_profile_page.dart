@@ -22,10 +22,11 @@ class EditProfilePage extends StatelessWidget {
     Get.lazyPut(() => EditProfileControllerImp());
 
     return Scaffold(
-      backgroundColor: Appcolor.colorbackground,
-      appBar: 
-      
-      CustomAppBar('Edit Profile', () => Get.back(),),
+      backgroundColor: Appcolor.backgroundColor,
+      appBar: CustomAppBar(
+        'Edit Profile',
+        () => Get.back(),
+      ),
       body: GetBuilder<EditProfileControllerImp>(
         builder: (controller) => HandlingDataView(
           status: controller.statusR,
@@ -97,7 +98,9 @@ class EditProfilePage extends StatelessWidget {
                       color: Appcolor.grey,
                     ),
                   ),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                   CustomDropdownButton(
                     onTap: () => controller.showNeighborhood(),
                     hintText: controller.userModel!.city ?? "Choose your city",
@@ -118,6 +121,10 @@ class EditProfilePage extends StatelessWidget {
                         color: Appcolor.grey,
                       ),
                     ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   if (controller.showneighborhood != false)
                     CustomDropdownButton(
                       hintText: controller.userModel!.neighborhood!,

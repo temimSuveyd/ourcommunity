@@ -30,15 +30,15 @@ class SliverHandlingDataView extends StatelessWidget {
               Icon(
                 Icons.inbox,
                 size: 100,
-                color: Appcolor.primarycolor.withOpacity(0.25),
+                color: Appcolor.primarycolor.withOpacity(0.9),
               ),
               const SizedBox(height: 24),
               Text(
                 message ?? "No data",
-                style: const TextStyle(
+                style:  TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black54,
+                  color: Appcolor.shadowColor,
                 ),
                 textAlign: TextAlign.center,
               ),

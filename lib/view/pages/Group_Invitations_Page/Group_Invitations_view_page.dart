@@ -15,7 +15,7 @@ class GroupInvitationsViewPage extends StatelessWidget {
       () => GroupInvitationsControllerImp(),
     );
     return Scaffold(
-      backgroundColor: Appcolor.colorbackground,
+      backgroundColor: Appcolor.backgroundColor,
       appBar: CustomAppBar(
         'Group Invitations',
         () => Get.back(),

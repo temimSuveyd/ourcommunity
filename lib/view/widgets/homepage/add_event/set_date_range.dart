@@ -36,7 +36,7 @@ class SetDateRange extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontFamily: "cairo",
-                    color: Appcolor.black,
+                    color: Appcolor.secondTextcolor,
                     fontWeight: FontWeight.w500,
                   ),
                 )),
@@ -60,7 +60,7 @@ class SetDateRange extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontFamily: "cairo",
-                    color: Appcolor.black,
+                    color: Appcolor.secondTextcolor,
                     fontWeight: FontWeight.w500,
                   ),
                 )),

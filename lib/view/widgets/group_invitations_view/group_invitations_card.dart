@@ -29,11 +29,11 @@ class GroupInvitationsCard extends StatelessWidget {
     final bool isPending = groupRequestModel.requesteStatus == 'pending';
     return Container(
       decoration: BoxDecoration(
-        color: Appcolor.colorbackground,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Appcolor.grey.withOpacity(0.3),
+            color: Appcolor.shadowColor,
             blurRadius: 10,
             offset: Offset(0, 4),
           ),
@@ -61,7 +61,7 @@ class GroupInvitationsCard extends StatelessWidget {
                         userModel.name!,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Appcolor.primarycolor,
+                          color: Appcolor.primarTextcolor,
                           fontFamily: "cairo",
                           fontSize: 15.sp,
                         ),
@@ -70,8 +70,8 @@ class GroupInvitationsCard extends StatelessWidget {
                       Text(
                         groupRequestModel.teamModel!.teamName!,
                         style: TextStyle(
-                          color: Appcolor.primarycolor,
-                          fontSize: 13.sp,
+                          color: Appcolor.secondTextcolor,
+                          fontSize: 12.sp,
                           fontFamily: "cairo",
                         ),
                       ),

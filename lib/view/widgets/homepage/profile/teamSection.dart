@@ -16,7 +16,7 @@ class TeamSection extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
-        color: Appcolor.white,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
           color: Appcolor.grey.withOpacity(0.3),
@@ -40,7 +40,7 @@ class TeamSection extends StatelessWidget {
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       fontFamily: "cairo",
-                      color: Appcolor.black,
+                      color: Appcolor.primarTextcolor,
                     ),
                   ),
                 ],
@@ -58,7 +58,7 @@ class TeamSection extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 10.r,
-                        backgroundColor: Appcolor.grey.withOpacity(0.2),
+                        backgroundColor: Appcolor.grey2,
                         child: const Icon(Icons.add,
                             color: Appcolor.black, size: 12),
                       ),
@@ -68,7 +68,7 @@ class TeamSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontFamily: "cairo",
-                          color: Appcolor.black,
+                          color: Appcolor.primarTextcolor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -36,7 +36,7 @@ class TeamCard extends StatelessWidget {
                       fontSize: 15.sp,
                       fontFamily: "cairo",
                       fontWeight: FontWeight.bold,
-                      color: Appcolor.black,
+                      color: Appcolor.primarTextcolor,
                     ),
                   ),
                 ),
@@ -47,7 +47,7 @@ class TeamCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontFamily: "cairo",
-                    color: Appcolor.grey,
+                    color: Appcolor.secondTextcolor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

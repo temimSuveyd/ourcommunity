@@ -22,7 +22,7 @@ class CreateEventPage extends StatelessWidget {
     Get.lazyPut(() => CreateEventControllerImp());
 
     return Scaffold(
-      backgroundColor: Appcolor.colorbackground,
+      backgroundColor: Appcolor.backgroundColor,
       appBar:  CustomAppBar(
         'Create Event',
         () => Get.back(),
@@ -271,19 +271,6 @@ class CreateEventPage extends StatelessWidget {
     required List<Widget> children,
   }) {
     return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -309,7 +296,8 @@ class CreateEventPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
-                    color: Appcolor.black,
+                    color: Appcolor.primarTextcolor,
+
                   ),
                 ),
               ),
@@ -335,7 +323,7 @@ class CreateEventPage extends StatelessWidget {
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w500,
-            color: Appcolor.black.withOpacity(0.8),
+            color: Appcolor.primarTextcolor.withOpacity(0.8),
           ),
         ),
         SizedBox(height: 8.h),
@@ -389,5 +377,3 @@ class CreateEventPage extends StatelessWidget {
   }
 }
 
-
-// builder_id

@@ -5,7 +5,7 @@ import 'package:ourcommunity/core/constant/color.dart';
 class EventInfoChip extends StatelessWidget {
   final IconData icon;
   final String text;
-  final Color? backgroundColor;
+  final Color? cardsColor;
   final Color? iconColor;
   final Color? textColor;
 
@@ -13,7 +13,7 @@ class EventInfoChip extends StatelessWidget {
     super.key,
     required this.icon,
     required this.text,
-    this.backgroundColor,
+    this.cardsColor,
     this.iconColor,
     this.textColor,
   });
@@ -23,7 +23,7 @@ class EventInfoChip extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: backgroundColor ?? Appcolor.primarycolor.withOpacity(0.08),
+        color: cardsColor ?? Appcolor.primarycolor.withOpacity(0.09),
         borderRadius: BorderRadius.circular(12.r),
         border: Border.all(
           color: Appcolor.primarycolor.withOpacity(0.12),

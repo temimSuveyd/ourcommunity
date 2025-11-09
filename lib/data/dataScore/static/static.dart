@@ -10,7 +10,7 @@ final List<OnboardingModel> onboardinglist = [
     subtitle: "Connect",
     body:
     "Connect with people who share your interests, discover new passions, and feel the power of community.",
-    backgroundColor: Colors.white, // خلفية الصفحة الأولى
+    cardsColor: Colors.white, // خلفية الصفحة الأولى
     titleColor: Colors.grey,
     subtitleColor: Colors.black,
     bodyColor: Colors.grey,
@@ -25,7 +25,7 @@ final List<OnboardingModel> onboardinglist = [
     subtitle: "Discover",
     body:
     "Get the latest news and updates about topics you care about directly in one place.",
-    backgroundColor: Appcolor.primarycolor, // خلفية فاتحة مختلفة
+    cardsColor: Appcolor.primarycolor, // خلفية فاتحة مختلفة
     titleColor: Colors.white,
     subtitleColor: Colors.white,
     bodyColor: Colors.white,
@@ -41,7 +41,7 @@ final List<OnboardingModel> onboardinglist = [
     subtitle: "Grow",
     body:
     "Expand your knowledge, improve your skills, and grow together with your community.",
-    backgroundColor: const Color(0xFFFF8F00), // خلفية بلون تاني
+    cardsColor: const Color(0xFFFF8F00), // خلفية بلون تاني
     titleColor: Colors.white,
     subtitleColor: Colors.white,
     bodyColor: Colors.white,

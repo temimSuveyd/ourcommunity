@@ -38,7 +38,7 @@ class EventDetailsControllerImp extends EventDetailsController {
   Services services = Get.find();
   bool isEventFavorited = false;
   bool isJoined = false;
-  bool? isBuilder;
+  bool isBuilder = false;
   List<Map<String, dynamic>> membersList = [];
   @override
   void statusreqest(Statusreqest status) {

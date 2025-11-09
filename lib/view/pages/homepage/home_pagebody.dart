@@ -15,7 +15,6 @@ class HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeControllerImp>(
       builder: (controller) => Scaffold(
-        backgroundColor: Appcolor.colorbackground,
         appBar: HomeAppBar(context),
         endDrawer: FilterDrawer(),
         body: Padding(
@@ -27,7 +26,7 @@ class HomePageBody extends StatelessWidget {
               await controller.setEventsType();
               controller.statusR = Statusreqest.success;
             },
-            backgroundColor: Appcolor.colorbackground,
+            backgroundColor: Appcolor.backgroundColor,
             color: Appcolor.primarycolor,
             child: CustomScrollView(
               slivers: [
@@ -52,13 +51,13 @@ class HomePageBody extends StatelessWidget {
 
   AppBar HomeAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Appcolor.white,
+      backgroundColor: Appcolor.backgroundColor,
       centerTitle: true,
       title: Text(
         "Home".tr,
         style: TextStyle(
-          fontSize: 20.sp,
-          fontWeight: FontWeight.bold,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w600,
           color: Appcolor.primarycolor,
         ),
       ),

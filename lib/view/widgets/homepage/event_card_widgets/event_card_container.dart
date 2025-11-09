@@ -28,25 +28,14 @@ class EventCardContainer extends StatelessWidget {
       margin: margin ?? EdgeInsets.symmetric(vertical: 9.h, horizontal: 2.w),
       padding: padding,
       decoration: BoxDecoration(
-        color: backgroundColor ?? Appcolor.white,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(borderRadius.r),
-        border: border ??
-            Border.all(
-              color: Appcolor.primarycolor.withOpacity(0.08),
-              width: 1.0,
-            ),
         boxShadow: boxShadow ??
             [
               BoxShadow(
-                color: Appcolor.primarycolor.withOpacity(0.06),
+                color: Appcolor.shadowColor.withOpacity(0.06),
                 blurRadius: 8,
                 offset: const Offset(0, 3),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Appcolor.primarycolor.withOpacity(0.04),
-                blurRadius: 16,
-                offset: const Offset(0, 8),
                 spreadRadius: 0,
               ),
             ],

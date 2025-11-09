@@ -28,11 +28,11 @@ class FavoriteButtonWidget extends StatelessWidget {
             height: 44.w,
             width: 44.w,
             decoration: BoxDecoration(
-              color: Appcolor.white.withOpacity(0.98),
+              color: Appcolor.cardColor.withOpacity(0.98),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                    color: Appcolor.primarycolor.withOpacity(0.09),
+                      color: Appcolor.shadowColor,
                     blurRadius: 6,
                     offset: const Offset(0, 2)),
               ],

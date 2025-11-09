@@ -21,7 +21,7 @@ class AllUsersCard extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Appcolor.colorbackground,
+          color: Appcolor.cardColor,
           boxShadow: [
             BoxShadow(
                 blurRadius: 10,
@@ -46,7 +46,7 @@ class AllUsersCard extends StatelessWidget {
                   userModel.name!,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      color: Appcolor.colorcarddark,
+                      color: Appcolor.primarTextcolor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
@@ -55,7 +55,7 @@ class AllUsersCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
 
                   style: TextStyle(
-                      color: Appcolor.grey,
+                      color: Appcolor.secondTextcolor,
                       fontSize: 12,
                       fontWeight: FontWeight.w400),
                 )

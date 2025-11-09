@@ -29,9 +29,9 @@ class SettingItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: Appcolor.grey,width: 0.5),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,11 +46,11 @@ class SettingItem extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.sp,
-                        color: Appcolor.black)),
+                        color: Appcolor.primarTextcolor)),
                 SizedBox(height: 4.h),
                 Text(subtitle,
                     style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Appcolor.secondTextcolor,
                         fontWeight: FontWeight.bold,
                         fontSize: 14.sp)),
                 SizedBox(height: 12.h),

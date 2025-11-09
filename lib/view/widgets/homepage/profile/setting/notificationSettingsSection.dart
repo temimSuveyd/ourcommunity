@@ -4,19 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/constant/color.dart';
 
-/// 🔹 قسم الإشعارات - Modern & Aesthetic Design (Stateless)
+/// 🔹 Notification Section - Modern & Aesthetic Design (Stateless)
 class NotificationSettingsSection extends StatelessWidget {
   const NotificationSettingsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Values and callbacks are static here for demo purposes.
-    // In a real app, these would come from state management.
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16,vertical: 5),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 20.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Appcolor.cardColor,
         borderRadius: BorderRadius.circular(18.r),
         boxShadow: [
           BoxShadow(
@@ -43,7 +41,7 @@ class NotificationSettingsSection extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Text(
-                "الإشعارات",
+                "Notifications",
                 style: TextStyle(
                   fontSize: 17.sp,
                   color: Appcolor.primarycolor,
@@ -63,16 +61,16 @@ class NotificationSettingsSection extends StatelessWidget {
             ),
             elevation: 0,
             margin: EdgeInsets.zero,
-            color: Appcolor.colorbackground,
+            color: Appcolor.cardColor,
             child: Column(
               children: [
                 _CustomNotificationSwitchTile(
                   icon: Icons.place_rounded,
                   iconColor: Colors.indigo.shade400,
-                  title: "فعاليات جديدة في منطقتي",
-                  subtitle: "احصل على إشعار عند ظهور أحداث قريبة",
+                  title: "Area events",
+                  subtitle: "Nearby event alert",
                   value: true,
-                  onChanged: (_) {}, // Use state management for real
+                  onChanged: (_) {},
                 ),
                 Divider(
                   height: 1,
@@ -84,8 +82,8 @@ class NotificationSettingsSection extends StatelessWidget {
                 _CustomNotificationSwitchTile(
                   icon: Icons.star_rate_rounded,
                   iconColor: Colors.orange.shade400,
-                  title: "توصيات مخصصة",
-                  subtitle: "تلقي اقتراحات بناءً على اهتمامك",
+                  title: "Suggestions",
+                  subtitle: "Interest-based tips",
                   value: true,
                   onChanged: (_) {},
                 ),
@@ -99,8 +97,8 @@ class NotificationSettingsSection extends StatelessWidget {
                 _CustomNotificationSwitchTile(
                   icon: Icons.groups_rounded,
                   iconColor: Colors.teal.shade700,
-                  title: "تنبيهات فرقي",
-                  subtitle: "الإشعارات المتعلقة بأنشطة الفرق المشتركة",
+                  title: "Team alerts",
+                  subtitle: "Team activity alerts",
                   value: false,
                   onChanged: (_) {},
                 ),
@@ -146,7 +144,7 @@ class _CustomNotificationSwitchTile extends StatelessWidget {
         title,
         style: TextStyle(
           fontSize: 15.5.sp,
-          color: Appcolor.black,
+          color: Appcolor.primarTextcolor,
           fontWeight: FontWeight.bold,
           fontFamily: "cairo",
         ),
@@ -157,7 +155,7 @@ class _CustomNotificationSwitchTile extends StatelessWidget {
           subtitle,
           style: TextStyle(
             fontSize: 12.5.sp,
-            color: Appcolor.grey,
+            color: Appcolor.secondTextcolor,
             fontFamily: "cairo",
             fontWeight: FontWeight.w500,
           ),

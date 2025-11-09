@@ -24,6 +24,7 @@ abstract class ProfilePageController extends GetxController {
   void goToEditProfilePage();
   void sginOut();
   void goToMyEventsPage();
+  void goToSettingsPage();
 }
 
 class ProfilePageControllerImp extends ProfilePageController {
@@ -91,7 +92,7 @@ class ProfilePageControllerImp extends ProfilePageController {
   @override
   void selectUserData() {
     final data = userDataList.first;
-    userModel = UserModel.fromMap(data,'profile_data');
+    userModel = UserModel.fromMap(data, 'profile_data');
     statusreqest(Statusreqest.success);
   }
 
@@ -109,17 +110,25 @@ class ProfilePageControllerImp extends ProfilePageController {
     await getTeams();
     super.onInit();
   }
-  
+
   @override
-void sginOut() {
+  void sginOut() {
     Supabase.instance.client.auth.signOut();
     Get.offAllNamed(AppRoutes.loginPage);
     services.sharedPreferences.clear();
   }
-  
+
   @override
   void goToMyEventsPage() {
-Get.toNamed(AppRoutes.myEventsPage,);
+    Get.toNamed(
+      AppRoutes.myEventsPage,
+    );
   }
 
+  @override
+  void goToSettingsPage() {
+    Get.toNamed(
+      AppRoutes.settingsPage,
+    );
+  }
 }

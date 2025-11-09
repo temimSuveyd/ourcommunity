@@ -18,7 +18,7 @@ ThemeData themearabic = ThemeData(
 // الثيم العربي الداكن
 ThemeData themearabicDark = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Appcolor.colorbackground,
+  scaffoldBackgroundColor: Appcolor.backgroundColor,
   textTheme: const TextTheme(
     displayLarge: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
@@ -46,7 +46,7 @@ ThemeData themeEnglish = ThemeData(
 // الثيم الإنجليزي الداكن
 ThemeData themeEnglishDark = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: Appcolor.colorbackground,
+  scaffoldBackgroundColor: Appcolor.backgroundColor,
   textTheme: const TextTheme(
     displayLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
     displayMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),

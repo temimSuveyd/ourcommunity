@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:ourcommunity/core/constant/color.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
 import 'event_card_widgets/event_card_container.dart';
 import 'event_card_widgets/event_image_widget.dart';
@@ -15,7 +16,6 @@ class EventCard extends StatelessWidget {
   final EventModel eventModel;
   final Function() toggleFavorite;
   final Function() onTap;
-
   final bool isFavorite;
   final bool? showFavoriteButton;
 
@@ -31,10 +31,10 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EventCardContainer(
+      backgroundColor: Appcolor.cardColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Görsel + Favori butonu + overlay
           Stack(
             children: [
               EventImageWidget(
@@ -81,7 +81,7 @@ class EventCard extends StatelessWidget {
                     ),
                     EventInfoChip(
                       icon: Iconsax.calendar_15,
-                      text: "${eventModel.startDate} - ${eventModel.endDate}",
+                      text: "${eventModel.startDate}) ${eventModel.endDate}",
                     ),
                   ],
                 ),

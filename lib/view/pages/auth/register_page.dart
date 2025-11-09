@@ -43,12 +43,12 @@ class RegisterPage extends StatelessWidget {
             child: Container(
               height: height * 0.80,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(35)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                   color: Appcolor.shadowColor,
                     blurRadius: 10,
                     spreadRadius: 3,
                     offset: Offset(0, -3),

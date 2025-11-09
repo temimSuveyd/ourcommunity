@@ -14,7 +14,7 @@ AppBar CustomAppBar(String title, Function() onPressed,
       ),
     ),
     centerTitle: true,
-    backgroundColor: Appcolor.white,
+    backgroundColor: Appcolor.backgroundColor,
     elevation: 0,
     leading: showLeading
         ? IconButton(

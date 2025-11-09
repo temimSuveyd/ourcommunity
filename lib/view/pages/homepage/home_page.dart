@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
 
     return Scaffold(
-      backgroundColor: Appcolor.colorbackground,
       body: GetBuilder<HomeControllerImp>(
         builder: (controller) => Stack(
           children: [

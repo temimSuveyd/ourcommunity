@@ -11,7 +11,7 @@ Future<bool> customDialog(
     textCancel: cancel,
     textConfirm: confirm,
     cancelTextColor: Appcolor.primarycolor,
-    confirmTextColor: Appcolor.colorbackground,
+    confirmTextColor: Appcolor.cardColor,
     buttonColor: Appcolor.primarycolor,
     onConfirm: () {
       status = true;

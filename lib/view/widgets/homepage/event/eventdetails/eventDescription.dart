@@ -2,6 +2,7 @@
 //
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ourcommunity/core/constant/color.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
 
 class EventDescription extends StatelessWidget {
@@ -21,18 +22,18 @@ class EventDescription extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(6.w),
               decoration: BoxDecoration(
-                color: Colors.orange.shade50,
+                color: Appcolor.primarycolor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(6.r),
               ),
-              child: Icon(Icons.info_outline, size: 16.sp, color: Colors.orange.shade700),
+              child: Icon(Icons.info_outline, size: 16.sp, color: Appcolor.primarycolor),
             ),
             SizedBox(width: 8.w),
             Text(
               "About the Event",
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: Appcolor.primarTextcolor,
                 fontFamily: "cairo",
               ),
             ),
@@ -44,7 +45,7 @@ class EventDescription extends StatelessWidget {
           style: TextStyle(
             fontSize: 15.sp,
             fontWeight: FontWeight.w500,
-            color: Colors.grey.shade700,
+            color: Appcolor.secondTextcolor,
             height: 1.6,
             fontFamily: "cairo",
           ),

@@ -17,6 +17,7 @@ class RecommendationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Appcolor.cardColor,
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -83,7 +84,7 @@ class RecommendationCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp,
                     fontFamily: "cairo",
-                    color: Appcolor.black,
+                    color: Appcolor.primarTextcolor,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -96,7 +97,7 @@ class RecommendationCard extends StatelessWidget {
                       event["date"]!,
                       style: TextStyle(
                         fontFamily: "cairo",
-                        color: Colors.grey,
+                        color: Appcolor.secondTextcolor,
                         fontSize: 16.sp,
                       ),
                     ),
@@ -111,7 +112,7 @@ class RecommendationCard extends StatelessWidget {
                     Text(
                       event["location"]!,
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Appcolor.secondTextcolor,
                         fontSize: 16.sp,
                       ),
                     ),

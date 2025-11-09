@@ -13,7 +13,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar('Saved Events', () => Get.back(),showLeading: false,),
-      backgroundColor: Appcolor.colorbackground,
+      backgroundColor: Appcolor.backgroundColor,
       body: SafeArea(
         child: FavoriteBody(),
       ),

@@ -7,7 +7,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:ourcommunity/controller/event/event_details_controller.dart';
 import 'package:ourcommunity/data/model/event/event_model.dart';
 
-import '../../../../../core/constant/Approutes.dart';
 import '../../../../../core/constant/color.dart';
 
 class EventExtraDetails extends StatelessWidget {
@@ -26,19 +25,19 @@ class EventExtraDetails extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(6.w),
               decoration: BoxDecoration(
-                color: Colors.purple.shade50,
+                color: Appcolor.primarycolor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(6.r),
               ),
               child: Icon(Icons.details,
-                  size: 16.sp, color: Colors.purple.shade700),
+                  size: 16.sp, color: Appcolor.primarycolor),
             ),
             SizedBox(width: 8.w),
             Text(
               "Additional Details",
               style: TextStyle(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: Appcolor.primarTextcolor,
                 fontFamily: "cairo",
               ),
             ),
@@ -96,7 +95,7 @@ class EventExtraDetails extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey.shade600,
+                    color: Appcolor.secondTextcolor,
                     fontFamily: "cairo",
                   ),
                 ),
@@ -105,7 +104,7 @@ class EventExtraDetails extends StatelessWidget {
                   value,
                   style: TextStyle(
                     fontSize: 15.sp,
-                    color: Colors.black87,
+                    color: Appcolor.primarTextcolor,
                     fontWeight: FontWeight.w600,
                     fontFamily: "cairo",
                   ),

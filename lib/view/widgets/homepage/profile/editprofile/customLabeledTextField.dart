@@ -28,7 +28,7 @@ class CustomLabeledTextField extends StatelessWidget {
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w500,
-            color: Appcolor.grey,
+            color: Appcolor.secondTextcolor,
           ),
         ),
         SizedBox(height: 8.h),
@@ -47,24 +47,24 @@ class CustomLabeledTextField extends StatelessWidget {
             decoration: InputDecoration(
               prefixIcon: Icon(icon, color: Appcolor.grey,size: 24,),
               filled: true,
-              fillColor: Appcolor.white,
+              fillColor: Appcolor.backgroundColor,
               contentPadding:
                   EdgeInsets.symmetric(vertical: 14.h, horizontal: 14.w),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                borderSide: BorderSide(color: Appcolor.grey, width: 1.3),
+                borderSide: BorderSide(color: Appcolor.grey, width: 0.5),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                borderSide: BorderSide(color: Appcolor.grey, width: 1),
+                borderSide: BorderSide(color: Appcolor.grey, width: 0.5),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                borderSide: BorderSide(color: Appcolor.primarycolor, width: 1.9),
+                borderSide: BorderSide(color: Appcolor.primarycolor, width: 0.5),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
-                borderSide: BorderSide(color: Colors.red, width: 1.9),
+                borderSide: BorderSide(color: Colors.red, width: 0.5),
               ),
             ),
           ),

@@ -36,7 +36,7 @@ class Onboarding extends StatelessWidget {
               return Stack(
                 children: [
                   Container(
-                    color: item.backgroundColor ?? Colors.white,
+                    color: item.cardsColor ?? Colors.white,
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
                     child: SafeArea(

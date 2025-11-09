@@ -18,7 +18,7 @@ class TeamTabs extends StatelessWidget {
       builder: (controller) => Container(
         padding: EdgeInsets.all(6.w),
         decoration: BoxDecoration(
-          color: Appcolor.white,
+          color: Appcolor.cardColor,
           borderRadius: BorderRadius.circular(14.r),
           boxShadow: [
             BoxShadow(
@@ -33,15 +33,17 @@ class TeamTabs extends StatelessWidget {
             final isSelected = controller.selectedTap == index;
             return Expanded(
               child: AnimatedContainer(
+                height: 50,
                 duration: Duration(milliseconds: 180),
                 curve: Curves.easeInOut,
                 margin: EdgeInsets.symmetric(horizontal: 2.5.w),
+
                 decoration: BoxDecoration(
-                  color: isSelected ? Appcolor.primarycolor : Appcolor.white,
+                  color: isSelected ? Appcolor.primarycolor : Appcolor.cardColor,
                   borderRadius: BorderRadius.circular(10.r),
                   border: isSelected
-                      ? Border.all(color: Appcolor.primarycolor, width: 2)
-                      : Border.all(color: Colors.grey.shade300),
+                      ? Border.all(color: Appcolor.primarycolor, width: 0.5)
+                      : Border.all(color: Appcolor.primarTextcolor, width: 0.5),
                   boxShadow: isSelected
                       ? [
                           BoxShadow(
@@ -57,19 +59,16 @@ class TeamTabs extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10.r),
                     onTap: () => controller.selectTap(index),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      child: Center(
-                        child: Text(
-                          tabs[index]['title']!,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: isSelected
-                                ? Appcolor.white
-                                : Appcolor.primarycolor,
-                            letterSpacing: 0.2,
-                          ),
+                    child: Center(
+                      child: Text(
+                        tabs[index]['title']!,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: isSelected
+                              ? Appcolor.primarTextcolor
+                              : Appcolor.primarTextcolor,
+                          letterSpacing: 0.2,
                         ),
                       ),
                     ),

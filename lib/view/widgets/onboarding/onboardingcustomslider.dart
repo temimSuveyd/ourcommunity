@@ -20,7 +20,7 @@ class OnboardingCustomSlider extends GetView<OnboardingcontrollerImp> {
       itemBuilder: (context, index) {
         final item = onboardinglist[index];
         return Container(
-          color: item.backgroundColor ?? Colors.white, // ✅ خلفية الصفحة
+          color: item.cardsColor ?? Colors.white, // ✅ خلفية الصفحة
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

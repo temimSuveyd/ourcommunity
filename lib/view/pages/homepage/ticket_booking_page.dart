@@ -32,7 +32,7 @@ class TicketBookingPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Card(
-          color: Appcolor.white,
+          color: Appcolor.cardColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

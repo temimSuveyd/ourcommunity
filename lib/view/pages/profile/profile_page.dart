@@ -22,7 +22,6 @@ class ProfilePage extends GetView<ProfilePageControllerImp> {
     );
     return Scaffold(
       appBar: CustomAppBar('Profile', () => Get.back(),showLeading: false,),
-      backgroundColor: Appcolor.colorbackground,
       body: GetBuilder<ProfilePageControllerImp>(
         builder: (controller) => 
        HandlingDataView(
@@ -41,12 +40,12 @@ class ProfilePage extends GetView<ProfilePageControllerImp> {
                   margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   decoration: BoxDecoration(
-                    color: Appcolor.white,
+                    color: Appcolor.cardColor,
                     borderRadius: BorderRadius.circular(16.r),
                     border: Border.all(color: Appcolor.grey.withOpacity(0.3)),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Appcolor.shadowColor,
                         blurRadius: 6,
                         offset: const Offset(0, 3),
                       ),
