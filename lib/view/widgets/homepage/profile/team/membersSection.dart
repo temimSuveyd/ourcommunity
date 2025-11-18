@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:ourcommunity/controller/team/team_view_controller.dart';
 import 'package:ourcommunity/data/model/team/member_model.dart';
 import 'package:ourcommunity/view/widgets/custom_widgets/custom_dialog.dart';
@@ -18,7 +17,6 @@ class MembersSection extends StatelessWidget {
     return GetBuilder<TeamViewControllerImp>(
       builder: (controller) => Column(
         children: [
-          /// 🔹 دعوة عضو + العدد
           Row(
             children: [
               Row(
@@ -62,7 +60,7 @@ class MembersSection extends StatelessWidget {
                 label: Text(
                   "Invite",
                   style: TextStyle(
-                    color: Appcolor.primarTextcolor,
+                    color: Appcolor.white,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),

@@ -37,9 +37,9 @@ class TeamTabs extends StatelessWidget {
                 duration: Duration(milliseconds: 180),
                 curve: Curves.easeInOut,
                 margin: EdgeInsets.symmetric(horizontal: 2.5.w),
-
                 decoration: BoxDecoration(
-                  color: isSelected ? Appcolor.primarycolor : Appcolor.cardColor,
+                  color:
+                      isSelected ? Appcolor.primarycolor : Appcolor.cardColor,
                   borderRadius: BorderRadius.circular(10.r),
                   border: isSelected
                       ? Border.all(color: Appcolor.primarycolor, width: 0.5)
@@ -66,7 +66,7 @@ class TeamTabs extends StatelessWidget {
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                           color: isSelected
-                              ? Appcolor.primarTextcolor
+                              ? Appcolor.white
                               : Appcolor.primarTextcolor,
                           letterSpacing: 0.2,
                         ),

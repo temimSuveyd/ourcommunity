@@ -145,4 +145,10 @@ List<GetPage> routes = [
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 300),
   ),
+    GetPage(
+    name: AppRoutes.openScreenPage,
+    page: () => OpenScreen(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 300),
+  ),
 ];

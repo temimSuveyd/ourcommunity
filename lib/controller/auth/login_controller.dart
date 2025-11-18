@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:ourcommunity/core/class/custom_snacBar.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
 import 'package:ourcommunity/core/constant/Approutes.dart';
 import 'package:ourcommunity/core/constant/sharedPreferences_constans.dart';
 import 'package:ourcommunity/core/services/servieses.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class SignInController extends GetxController {
@@ -27,7 +23,7 @@ class SignInControllerImp extends SignInController {
   Statusreqest statusR = Statusreqest.success;
   var obscurePassword = true.obs;
   final SupabaseClient supabase = Supabase.instance.client;
-Services services = Get.find();
+  Services services = Get.find();
   @override
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
@@ -44,7 +40,8 @@ Services services = Get.find();
           password: passwordController.text.trim(),
         );
         final userId = res.user!.id;
-        if (res.session != null) {
+
+        if (res.user?.id != null && res.session != null) {
           saveDataLocal(userId);
           Get.offAllNamed(AppRoutes.homePage);
           showCustomSnackBar("Welcome");

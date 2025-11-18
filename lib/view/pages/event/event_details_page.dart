@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:ourcommunity/controller/event/event_details_controller.dart';
 import 'package:ourcommunity/core/class/handlingDataView.dart';
 import 'package:ourcommunity/core/constant/color.dart';
@@ -66,7 +67,7 @@ class EventDetailsPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Appcolor.cardColor,
                     borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(color:Appcolor.grey, width: 0.5),
+                    border: Border.all(color: Appcolor.grey, width: 0.5),
                   ),
                   child: EventExtraDetails(
                     eventModel: controller.eventModel!,
@@ -111,15 +112,52 @@ class EventMemebersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EventDetailsControllerImp>(
-      builder: (controller) => SliverList.builder(
-          itemCount: controller.membersList.length,
-          itemBuilder: (context, index) => AllUsersCard(
-              userModel: UserModel.fromMap(
-                  controller.membersList[index], 'profile_data'),
-              onPressed: () {},
-              isOnTeam: true)),
-    );
+
+    return GetBuilder<EventDetailsControllerImp>(builder: (controller) {
+      return SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Event Participants',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.sp,
+                        color: Appcolor.secondTextcolor),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              if (controller.membersList.isNotEmpty)
+                ...List.generate(
+                  controller.membersList.length,
+                  (index) => AllUsersCard(
+                    showButton: false,
+                      userModel: UserModel.fromMap(
+                          controller.membersList[index], 'profile_data'),
+                      onPressed: () {},
+                      isOnTeam: true),
+                ),
+              if (controller.membersList.isEmpty)
+                SizedBox(
+                  height: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(Iconsax.user_remove, size: 48, color: Colors.grey),
+                      Text('No participants yet',
+                          style: TextStyle(color: Colors.grey))
+                    ],
+                  ),
+                )
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 

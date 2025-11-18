@@ -228,15 +228,15 @@ class _RegisterForm extends StatelessWidget {
 
                 const SizedBox(height: 5),
 
-                /// Divider OR
-                const OrDivider(),
+                // /// Divider OR
+                // const OrDivider(),
 
-                /// Social buttons
-                SocialButton(
-                  onTap: () => controller.signUpWithGoogle(),
-                ),
+                // /// Social buttons
+                // SocialButton(
+                //   onTap: () => controller.signUpWithGoogle(),
+                // ),
 
-                const SizedBox(height: 5),
+                // const SizedBox(height: 5),
 
                 /// Already have account
                 RegisterRedirectText(

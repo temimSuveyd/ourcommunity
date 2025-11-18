@@ -1,6 +1,8 @@
 class AppRoutes {
   static const String onboarding = "/Onboarding";
   static const String welcomeBackUI = "/WelcomeBackUI";
+  static const String openScreenPage = "/openScreenPage";
+
   /////////////auth
   /////////////auth
   static const String loginPage = "/LoginPage";

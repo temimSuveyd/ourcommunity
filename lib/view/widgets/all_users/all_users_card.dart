@@ -9,23 +9,25 @@ class AllUsersCard extends StatelessWidget {
     required this.userModel,
     required this.onPressed,
     required this.isOnTeam,
+    this.showButton,
   });
   final UserModel userModel;
   final Function() onPressed;
   final bool isOnTeam;
+  final bool? showButton;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 5),
+      margin: EdgeInsets.only(bottom: 10),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       height: 70,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
           color: Appcolor.cardColor,
           boxShadow: [
             BoxShadow(
                 blurRadius: 10,
-                color: const Color.fromARGB(112, 158, 158, 158),
+                color: Appcolor.shadowColor,
                 spreadRadius: -4,
                 offset: Offset(0, 3))
           ]),
@@ -53,7 +55,6 @@ class AllUsersCard extends StatelessWidget {
                 Text(
                   '${userModel.city}/${userModel.neighborhood}.',
                   overflow: TextOverflow.ellipsis,
-
                   style: TextStyle(
                       color: Appcolor.secondTextcolor,
                       fontSize: 12,
@@ -63,40 +64,41 @@ class AllUsersCard extends StatelessWidget {
             ),
           ),
           Spacer(),
-          MaterialButton(
-            padding: EdgeInsets.all(0),
-            onPressed: () {
-              if (!isOnTeam) {
-                onPressed();
-              }
-            },
-            color: !isOnTeam ? Appcolor.primarycolor : Appcolor.grey,
-            minWidth: 90,
-            height: 30,
-            shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
-            child: Row(
-              spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  isOnTeam ? 'In Team' : 'Invite',
-                  style: TextStyle(
-                      color: Appcolor.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13),
-                ),
-                !isOnTeam
-                    ? Icon(
-                        Iconsax.send_1,
+          if (showButton != false)
+            MaterialButton(
+              padding: EdgeInsets.all(0),
+              onPressed: () {
+                if (!isOnTeam) {
+                  onPressed();
+                }
+              },
+              color: !isOnTeam ? Appcolor.primarycolor : Appcolor.grey,
+              minWidth: 90,
+              height: 30,
+              shape: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none),
+              child: Row(
+                spacing: 10,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    isOnTeam ? 'In Team' : 'Invite',
+                    style: TextStyle(
                         color: Appcolor.white,
-                        size: 18,
-                      )
-                    : SizedBox(),
-              ],
-            ),
-          )
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13),
+                  ),
+                  !isOnTeam
+                      ? Icon(
+                          Iconsax.send_1,
+                          color: Appcolor.white,
+                          size: 18,
+                        )
+                      : SizedBox(),
+                ],
+              ),
+            )
         ],
       ),
     );

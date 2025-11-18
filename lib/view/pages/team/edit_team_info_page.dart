@@ -18,24 +18,23 @@ class EditTeamInfoPage extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: CustomAppBar('Edit team data', () => Get.back()),
-      backgroundColor: Appcolor.white,
+      appBar: CustomAppBar('Edit Team Data', () => Get.back()),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.w),
         child: Column(
           children: [
-            // صورة الفريق مع زر الكاميرا
+            // Team image with camera button
             TeamLogoPicker(),
 
             SizedBox(height: 24.h),
 
-            // الحقول داخل كونتينر
+            // Fields inside the container
             Container(
               padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: Appcolor.grey, width: 0.5),
                 borderRadius: BorderRadius.circular(12.r),
-                color: Colors.white,
+                color: Appcolor.cardColor,
               ),
               child: GetBuilder<EditTeamInfoControllerImp>(
                 builder: (controller) => HandlingDataView(
@@ -44,22 +43,22 @@ class EditTeamInfoPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomteamTextField(
-                        label: "اسم الفريق",
+                        label: "Team Name",
                         controller: controller.nameController,
                       ),
                       SizedBox(height: 16.h),
 
                       CustomteamTextField(
-                        label: "نبذة عن الفريق",
+                        label: "About the Team",
                         controller: controller.descController,
                         maxLines: 3,
                       ),
 
                       SizedBox(height: 24.h),
 
-                      // ✅ زر الحفظ ويدجيت مستقلة
+                      // Save button (as a separate widget)
                       CustomPrimaryButton(
-                        text: "حفظ التغييرات",
+                        text: "Save Changes",
                         onPressed: () => controller.updateData(),
                       ),
                     ],

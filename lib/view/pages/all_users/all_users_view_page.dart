@@ -15,7 +15,6 @@ class AllUsersViewPage extends StatelessWidget {
       () => AllUsersViewControllerImp(),
     );
     return Scaffold(
-      backgroundColor: Appcolor.backgroundColor,
       appBar: CustomAppBar(
         'Send verifaction',
         () => Get.back(),

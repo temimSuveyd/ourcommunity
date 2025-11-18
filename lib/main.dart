@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Place controller above the builder tree for reactivity.
     return GetBuilder<SettingsControllerImp>(
       init: SettingsControllerImp(),
       builder: (controller) {
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
           enableScaleWH: () => true,
           enableScaleText: () => true,
           builder: (context, child) {
-            ScreenUtil.init(context);
+        
             return GetMaterialApp(
               translations: AppTranslations(),
               locale: const Locale('en'), // اللغة الافتراضية

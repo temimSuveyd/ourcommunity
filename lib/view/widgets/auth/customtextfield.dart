@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ourcommunity/core/constant/color.dart';
 
 /// 🔹 Custom TextField Widget
 class CustomTextField extends StatelessWidget {
@@ -23,7 +24,7 @@ class CustomTextField extends StatelessWidget {
     this.onPressed,
     required this.validator,
     this.keyboardType,
-    this.onChanged ,
+    this.onChanged,
   });
 
   @override
@@ -41,7 +42,9 @@ class CustomTextField extends StatelessWidget {
             ? IconButton(onPressed: onPressed, icon: Icon(suffix))
             : null,
         filled: true,
-        fillColor: const Color.fromARGB(255, 228, 228, 228),
+        fillColor: Appcolor.backgroundColor != Appcolor.darkThemeBackground
+            ? const Color.fromARGB(255, 228, 228, 228)
+            : Appcolor.cardColor,
         hintStyle: TextStyle(
           color: Colors.grey.shade600,
           fontSize: 12.sp,

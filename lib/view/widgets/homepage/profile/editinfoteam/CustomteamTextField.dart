@@ -24,7 +24,7 @@ class CustomteamTextField extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 15.sp,
-            color: Appcolor.black,
+            color: Appcolor.primarTextcolor,
           ),
         ),
         SizedBox(height: 8.h),
@@ -34,11 +34,11 @@ class CustomteamTextField extends StatelessWidget {
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w600,
-            color: Appcolor.black,
+            color: Appcolor.secondTextcolor,
           ),
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Appcolor.cardColor,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 12.w,
               vertical: 12.h,

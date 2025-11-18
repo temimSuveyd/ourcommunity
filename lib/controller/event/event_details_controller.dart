@@ -210,8 +210,8 @@ class EventDetailsControllerImp extends EventDetailsController {
         showCustomSnackBar(e.toString());
       }
     } else {
-      isBuilder = true;
-      update();
+      isBuilder = false;
     }
+    update();
   }
 }

@@ -54,7 +54,7 @@ class EventImageHeader extends StatelessWidget {
             decoration: BoxDecoration(
               color: Appcolor.cardColor,
               borderRadius: BorderRadius.circular(20.r),
-              border: Border.all(color:Appcolor.grey, width: 0.5),
+              border: Border.all(color: Appcolor.grey, width: 0.5),
             ),
             child: Padding(
               padding: EdgeInsets.all(24.w),
@@ -79,13 +79,12 @@ class EventImageHeader extends StatelessWidget {
                         height: 40.w,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border:
-                              Border.all(color: Appcolor.grey, width: 2),
+                          border: Border.all(color: Appcolor.grey, width: 2),
                         ),
                         child: CircleAvatar(
                           radius: 18.r,
                           backgroundImage: NetworkImage(
-                            eventModel.userPhoto ??'',
+                            eventModel.userPhoto ?? '',
                           ),
                         ),
                       ),
@@ -99,7 +98,7 @@ class EventImageHeader extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Appcolor.secondTextcolor ,
+                                color: Appcolor.secondTextcolor,
                                 fontFamily: "cairo",
                               ),
                             ),

@@ -20,7 +20,7 @@ class Appcolor {
   // primary
   static Color cardColor =  Color.fromARGB(255, 255, 255, 255);
   static Color controllercolor = Colors.deepPurple.shade800;
-  static Color primarycolor = const Color.fromARGB(255, 51, 0, 255);
+  static Color primarycolor = const Color.fromARGB(255, 40, 103, 250);
   static const Color green = Colors.green;
   static const Color orange = Colors.orange;
   static const Color white = Colors.white;

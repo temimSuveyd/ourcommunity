@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:ourcommunity/core/class/handling_data.dart';
 import 'package:ourcommunity/core/constant/Appimageasset.dart';
 import 'package:ourcommunity/core/constant/color.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HandlingDataView extends StatelessWidget {
   const HandlingDataView(
@@ -13,37 +14,16 @@ class HandlingDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (status == Statusreqest.loading) {
-      return CustomAnimationImage(
-        image: AppImagesasset.loaidngAnimation,
-      );
-    } else if (status == Statusreqest.faliure) {
-      return CustomAnimationImage(
-        image: AppImagesasset.worgingAnimation,
-        message: message,
-      );
-    } else if (status == Statusreqest.noData) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.inbox,
-              size: 100,
-              color: Appcolor.primarycolor.withOpacity(0.9),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              message ?? "No data",
-              style:  TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Appcolor.secondTextcolor,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+      return Expanded(
+        child: Center(
+          child: LoadingAnimationWidget.dotsTriangle(
+              color: Appcolor.primarycolor, size: 80),
         ),
       );
+    } else if (status == Statusreqest.faliure) {
+      return CustomAnimationImage(icon: Iconsax.info_circle);
+    } else if (status == Statusreqest.noData) {
+      return CustomAnimationImage(icon: Iconsax.archive_minus);
     } else {
       return child;
     }
@@ -54,11 +34,11 @@ class CustomAnimationImage extends StatelessWidget {
   const CustomAnimationImage({
     super.key,
     this.message,
-    required this.image,
+    required this.icon,
   });
 
   final String? message;
-  final String image;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -71,19 +51,18 @@ class CustomAnimationImage extends StatelessWidget {
             height: 200,
           ),
           Center(
-            child: LottieBuilder.asset(
-              image,
-              height: 200,
-              width: 200,
-            ),
-          ),
+              child: Icon(
+            icon,
+            size: 80,
+            color: Appcolor.primarycolor,
+          )),
           message != null
               ? Text(
                   message!,
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Appcolor.black),
+                      color: Appcolor.primarycolor),
                   textAlign: TextAlign.center,
                 )
               : Container(),

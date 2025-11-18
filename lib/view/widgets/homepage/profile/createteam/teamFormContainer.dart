@@ -99,8 +99,10 @@ class TeamFormContainer extends StatelessWidget {
             (value) => validateField(
                 value: value, fieldType: "text", minWords: 10, maxWords: 200),
           ),
-          SizedBox(height: 24,),
-                    CustomDropdownButton(
+          SizedBox(
+            height: 24,
+          ),
+          CustomDropdownButton(
             dataList: controller.categoryDataList
                 .map((e) => e['category_name'].toString())
                 .toList(),
@@ -144,31 +146,34 @@ class TeamFormContainer extends StatelessWidget {
           ),
         ),
         SizedBox(height: 6.h),
-        TextFormField(
-          validator: (value) => validator(value),
-          controller: controller,
-          maxLines: maxLines,
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(
-              fontSize: 14.sp,
-              color: Appcolor.grey,
-              fontWeight: FontWeight.bold,
-              fontFamily: "cairo",
-            ),
-            filled: true,
-            fillColor: Appcolor.white,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
-              borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+        SizedBox(
+          height: 45,
+          child: TextFormField(
+            validator: (value) => validator(value),
+            controller: controller,
+            maxLines: maxLines,
+            decoration: InputDecoration(
+              hintText: hint,
+              hintStyle: TextStyle(
+                fontSize: 14.sp,
+                color: Appcolor.grey,
+                fontWeight: FontWeight.bold,
+                fontFamily: "cairo",
+              ),
+              filled: true,
+              fillColor: Appcolor.backgroundColor,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+              ),
             ),
           ),
         ),
@@ -176,7 +181,7 @@ class TeamFormContainer extends StatelessWidget {
     );
   }
 
-  Widget _buildUploadSection(CreateTeamController controller) {
+  Widget _buildUploadSection(CreateTeamControllerImp controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -194,53 +199,67 @@ class TeamFormContainer extends StatelessWidget {
           onTap: () {
             controller.pickeImage();
           },
-          child: Container(
-            height: 120.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.r),
-              border: Border.all(
-                color: Colors.grey.shade400,
-                style: BorderStyle.solid,
-                width: 1,
-              ),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.cloud_upload_outlined,
-                      size: 36.sp, color: Colors.blue),
-                  SizedBox(height: 8.h),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "cairo",
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                      ),
+          child: controller.teamModel.teamLogo == null
+              ? Container(
+                  height: 150.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    border: Border.all(
+                      color: Colors.grey.shade400,
+                      style: BorderStyle.solid,
+                      width: 1,
+                    ),
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const TextSpan(
-                            text: "Drag and drop your logo here, or "),
-                        TextSpan(
-                          text: "Browse files",
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            fontFamily: "cairo",
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
+                        Icon(Icons.cloud_upload_outlined,
+                            size: 36.sp, color: Colors.blue),
+                        SizedBox(height: 8.h),
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontFamily: "cairo",
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: [
+                              const TextSpan(
+                                  text: "Drag and drop your logo here, or "),
+                              TextSpan(
+                                text: "Browse files",
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontFamily: "cairo",
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const TextSpan(text: "\nPNG, JPG, SVG"),
+                            ],
                           ),
                         ),
-                        const TextSpan(text: "\nPNG, JPG, SVG"),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                )
+              : Container(
+                  height: 150.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      border: Border.all(
+                          style: BorderStyle.solid,
+                          width: 1,
+                          color: Appcolor.grey),
+                      image: DecorationImage(
+                          image: NetworkImage(controller.teamModel.teamLogo!),
+                          fit: BoxFit.cover)),
+                ),
         ),
       ],
     );

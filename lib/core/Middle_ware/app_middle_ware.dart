@@ -11,9 +11,9 @@ class AppMiddleware extends GetMiddleware {
     final bool isLogin =
         appService.sharedPreferences.getBool(SharedKeys.isLogin) ?? false;
     if (isLogin) {
-      return RouteSettings(name: AppRoutes.forgetpasswordpage);
+      return RouteSettings(name: AppRoutes.homePage);
     } else {
-      return RouteSettings(name: AppRoutes.welcomeBackUI);
+      return RouteSettings(name: AppRoutes.openScreenPage);
     }
   }
 }

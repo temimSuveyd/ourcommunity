@@ -132,7 +132,6 @@ class CreateEventControllerImp extends CreateEventController {
 
   Future<void> pickImage() async {
     statusreqest(Statusreqest.loading);
-
     final picked = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 20,
@@ -306,12 +305,8 @@ class CreateEventControllerImp extends CreateEventController {
     try {
       statusreqest(Statusreqest.loading);
       final res = await teamData.getTeamsByBuilderId(userId!);
-      if (res.isEmpty) {
-        statusreqest(Statusreqest.faliure);
-      } else {
-        teamDataList = res;
-        statusreqest(Statusreqest.success);
-      }
+      teamDataList = res;
+      statusreqest(Statusreqest.success);
     } on PostgrestException catch (e) {
       showCustomSnackBar(e.message);
       statusreqest(Statusreqest.success);
@@ -350,3 +345,6 @@ class CreateEventControllerImp extends CreateEventController {
     update();
   }
 }
+
+
+
